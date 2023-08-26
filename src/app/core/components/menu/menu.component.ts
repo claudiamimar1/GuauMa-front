@@ -7,14 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  public tabIndex = 0;
-
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  onTabClick(index) {
-    this.tabIndex = index;
   }
 }

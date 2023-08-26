@@ -1,6 +1,6 @@
 <div>
     <ul>
-        <li><a [ngClass]="{'active': tabIndex === 0}" (click)="onTabClick(0)" href="/inicio-cuidado-animal">Inicio</a></li>
-        <li><a [ngClass]="{'active': tabIndex === 1}" (click)="onTabClick(1)" href="/blog-cuidado-animal">Blog</a></li>
+        <li><a routerLinkActive="active" [routerLink]="['inicio-cuidado-animal']">Inicio</a></li>
+        <li><a routerLinkActive="active" [routerLink]="['blog-cuidado-animal']">Blog</a></li>
     </ul>
 </div>

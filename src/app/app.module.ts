@@ -7,6 +7,7 @@ import { HeaderComponent } from './core/components/header/header.component';
 import { PaginaInicialComponent } from './feature/pagina-inicial/pagina-inicial.component';
 import { MenuComponent } from './core/components/menu/menu.component';
 import { PaginaBlogComponent } from './feature/pagina-blog/pagina-blog.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PaginaBlogComponent } from './feature/pagina-blog/pagina-blog.component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
