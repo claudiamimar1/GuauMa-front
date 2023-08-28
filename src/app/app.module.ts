@@ -8,6 +8,7 @@ import { PaginaInicialComponent } from './feature/pagina-inicial/pagina-inicial.
 import { MenuComponent } from './core/components/menu/menu.component';
 import { PaginaBlogComponent } from './feature/pagina-blog/pagina-blog.component';
 import { RouterModule } from '@angular/router';
+import { SidebarComponent } from './core/components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { RouterModule } from '@angular/router';
     HeaderComponent,
     PaginaInicialComponent,
     MenuComponent,
-    PaginaBlogComponent
+    PaginaBlogComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
