@@ -1,0 +1,74 @@
+.span-categoria {
+    font-weight: bolder;
+    color: #000;
+}
+
+.nav-link:focus,
+.nav-link:hover {
+    color: #000;
+}
+
+.nav-link {
+    color: #000;
+}
+
+.bg-dark {
+    background-color: #b1d1fb !important;
+}
+
+ul {
+    width: -webkit-fill-available;
+}
+
+li:hover {
+    background-color: #d8bafc !important;
+}
+
+li {
+    display: block;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    width: inherit;
+}
+
+.bi-search {
+    background: url('./../../../../assets/images/search.svg');
+    background-size: cover;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin-left: -10px;
+    margin-top: -10px;
+}
+
+.bi-search:hover {
+    background: url('./../../../../assets/images/search.svg');
+    background-size: cover;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin-left: -10px;
+    margin-top: -10px;
+}
+
+.btn-outline-secondary {
+    width: 35px;
+    height: 30px;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+.btn-outline-secondary:hover {
+    width: 35px;
+    height: 30px;
+    margin-left: 15px;
+    margin-top: 5px;
+    background: #d8bafc;
+}
+
+.input-text-search {
+    border-radius: .25rem !important;
+}
