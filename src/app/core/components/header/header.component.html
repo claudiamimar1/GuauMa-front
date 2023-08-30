@@ -4,6 +4,27 @@
             <img class="logo-aplicacion" src="./../../../../assets/images/logo.png" />
             <h1 class="nombre-aplicacion">El Guardian de tu Mascota</h1>
         </div>
+        <button class="btn btn-menu" (click)="mostrarMenu()"><i class="fa fa-bars"></i> Menu</button>
+        <div class="div-menu" [ngClass]="{ 'div-menu-active': menuActive }">
+            <a class="dropdown-item" href="#">Mi Perfil</a>
+            <a class="dropdown-item" href="#">Cerrar Sesión</a>
+        </div>
+    </div>
+    <div>
+        <ul>
+            <li class="nav-item dropdown" (click)="mostrarCategoria()">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Categoria
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" [ngClass]="{ 'div-categoria-active': categoriaActive }">
+                    <a class="dropdown-item" href="#">Accesorios</a>
+                    <a class="dropdown-item" href="#">Alimentos</a>
+                    <a class="dropdown-item" href="#">Entretenimiento</a>
+                </div>
+            </li>
+            <li><a routerLinkActive="active" [routerLink]="['inicio-cuidado-animal']">Negocios</a></li>
+            <li><a routerLinkActive="active" [routerLink]="['blog-cuidado-animal']">Blog</a></li>
+        </ul>
     </div>
 </header>
-<app-menu></app-menu>

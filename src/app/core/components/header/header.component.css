@@ -19,7 +19,6 @@
 
 .nombre-aplicacion {
     font-size: 20px;
-    /* padding-left: 20px; */
     padding-top: 3%;
     float: left;
 }
@@ -29,4 +28,72 @@
     max-width: 10%;
     max-height: 10%;
     float: left;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #b1d1fb;
+    display: flex;
+    justify-content: center;
+}
+
+li {
+    width: 10%;
+    display: list-item;
+}
+
+li a {
+    display: block;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+.active {
+    background-color: #d9befb;
+    color: rgb(0, 0, 0);
+}
+
+li a:hover {
+    background-color: #d9befb;
+    color: rgb(0, 0, 0);
+}
+
+.btn-menu {
+    top: 0;
+    right: 0;
+    position: fixed;
+    margin: 10px;
+    background-color: #b1d1fb;
+}
+
+.div-menu {
+    background: #afd2fb;
+    width: fit-content;
+    border-radius: 12px;
+    padding: 10px;
+    top: 55px;
+    right: 10px;
+    position: fixed;
+    display: none;
+}
+
+.dropdown-item:hover {
+    background: #d9befb;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.div-menu-active {
+    display: block;
+}
+
+.div-categoria-active {
+    display: contents;
 }

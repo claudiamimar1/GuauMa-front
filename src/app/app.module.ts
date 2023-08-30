@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { PaginaInicialComponent } from './feature/pagina-inicial/pagina-inicial.component';
-import { MenuComponent } from './core/components/menu/menu.component';
 import { PaginaBlogComponent } from './feature/pagina-blog/pagina-blog.component';
 import { RouterModule } from '@angular/router';
 import { SidebarComponent } from './core/components/sidebar/sidebar.component';
@@ -15,7 +14,6 @@ import { SidebarComponent } from './core/components/sidebar/sidebar.component';
     AppComponent,
     HeaderComponent,
     PaginaInicialComponent,
-    MenuComponent,
     PaginaBlogComponent,
     SidebarComponent
   ],
