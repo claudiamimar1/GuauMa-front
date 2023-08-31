@@ -4,10 +4,10 @@
             <img class="logo-aplicacion" src="./../../../../assets/images/logo.png" />
             <h1 class="nombre-aplicacion">El Guardian de tu Mascota</h1>
         </div>
-        <button class="btn btn-menu" (click)="mostrarMenu()"><i class="fa fa-bars"></i> Menu</button>
+        <button class="btn btn-menu" (click)="mostrarMenu()"><i class="fa fa-user"></i></button>
         <div class="div-menu" [ngClass]="{ 'div-menu-active': menuActive }">
             <a class="dropdown-item" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mi Perfil</a>
-            <a class="dropdown-item" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mis Productos</a>
+            <a class="dropdown-item" [routerLink]="['mis-servicios']" (click)="mostrarMenu()">Mis servicios</a>
             <a class="dropdown-item" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mis Publicaciones</a>
             <a class="dropdown-item" href="#">Cerrar Sesión</a>
         </div>

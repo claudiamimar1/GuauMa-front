@@ -9,6 +9,7 @@ import { PaginaBlogComponent } from './feature/pagina-blog/pagina-blog.component
 import { RouterModule } from '@angular/router';
 import { PerfilComponent } from './feature/perfil/perfil.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ServiciosComponent } from './feature/servicios/servicios.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     PaginaInicialComponent,
     PaginaBlogComponent,
-    PerfilComponent
+    PerfilComponent,
+    ServiciosComponent
   ],
   imports: [
     BrowserModule,

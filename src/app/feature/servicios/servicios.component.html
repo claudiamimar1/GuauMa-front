@@ -1,0 +1,35 @@
+<div class="div-servicios">
+    <h1>Mis Servicios</h1><br>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Fecha publicación</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        <tr *ngFor="let servicio of datosServicios">
+            <td [contentEditable]="editar">{{servicio.nombre}}</td>
+            <td [contentEditable]="editar">{{servicio.descripcion}}</td>
+            <td [contentEditable]="editar">{{servicio.precio}}</td>
+            <td [contentEditable]="editar">{{servicio.fechaPublicacion}}</td>
+            <td [contentEditable]="editar">{{servicio.estado}}</td>
+            <td>
+                <button class="btn btn-editar"><i class="fa fa-edit"></i></button>
+            </td>
+        </tr>
+        <tr *ngIf="agregarServicio" >
+            <td [contentEditable]="true"></td>
+            <td [contentEditable]="true"></td>
+            <td [contentEditable]="true"></td>
+            <td [contentEditable]="true"></td>
+            <td [contentEditable]="true"></td>
+            <td>
+                <button class="btn btn-editar" (click)="guardarNuevoServicio()"><i class="fa fa-save"></i></button>
+            </td>
+        </tr>
+    </table>
+    <button class="btn btn-agregar" (click)="agregarNuevoServicio()"><i class="fa fa-plus"></i> Agregar servicio</button>
+    <button class="btn btn-cancelar" *ngIf="agregarServicio" (click)="cancelarNuevoServicio()"><i class="fa fa-cancel"></i> Cancelar</button>
+</div>

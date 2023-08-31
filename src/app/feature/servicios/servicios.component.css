@@ -1,0 +1,46 @@
+.div-servicios {
+    width: 60%;
+    position: absolute;
+    left: 20%;
+    text-align-last: center;
+    margin-top: 40px;
+}
+
+h1,
+form {
+    margin-top: 10px;
+}
+
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+table td,
+table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2e3f4;
+}
+
+table tr:hover {
+    background-color: #b1d1fb;
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #b1d1fb;
+    color: #000;
+}
+
+.btn-agregar {
+    margin-bottom: 10px;
+    background-color: #b1d1fb;
+}

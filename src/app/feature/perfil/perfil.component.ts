@@ -13,6 +13,10 @@ export class PerfilComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.cargarDatos();
+  }
+
+  private cargarDatos() {
     this.datosPerfil = new FormGroup({
       nombres: new FormControl("Carolina", Validators.maxLength(20)),
       apellidos: new FormControl("Marín", Validators.maxLength(30)),
