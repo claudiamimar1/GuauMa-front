@@ -67,7 +67,7 @@ li a:hover {
 .btn-menu {
     top: 0;
     right: 0;
-    position: fixed;
+    position: absolute;
     margin: 10px;
     background-color: #b1d1fb;
 }

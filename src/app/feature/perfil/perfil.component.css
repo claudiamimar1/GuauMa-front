@@ -25,3 +25,8 @@ input {
     width: 35%;
     border-radius: 10px;
 }
+
+.btn-editar {
+    margin-bottom: 10px;
+    background-color: #b1d1fb;
+}
