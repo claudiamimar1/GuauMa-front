@@ -83,7 +83,7 @@ li a:hover {
     display: none;
 }
 
-.dropdown-item:hover {
+.dropdown-item:hover, .dropdown-item:active, .dropdown-item:focus {
     background: #d9befb;
     border-radius: 5px;
     margin-bottom: 5px;

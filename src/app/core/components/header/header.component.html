@@ -6,7 +6,7 @@
         </div>
         <button class="btn btn-menu" (click)="mostrarMenu()"><i class="fa fa-bars"></i> Menu</button>
         <div class="div-menu" [ngClass]="{ 'div-menu-active': menuActive }">
-            <a class="dropdown-item" href="#">Mi Perfil</a>
+            <a class="dropdown-item" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mi Perfil</a>
             <a class="dropdown-item" href="#">Cerrar Sesión</a>
         </div>
     </div>

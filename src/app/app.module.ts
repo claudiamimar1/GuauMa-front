@@ -7,7 +7,8 @@ import { HeaderComponent } from './core/components/header/header.component';
 import { PaginaInicialComponent } from './feature/pagina-inicial/pagina-inicial.component';
 import { PaginaBlogComponent } from './feature/pagina-blog/pagina-blog.component';
 import { RouterModule } from '@angular/router';
-import { SidebarComponent } from './core/components/sidebar/sidebar.component';
+import { PerfilComponent } from './feature/perfil/perfil.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,12 +16,13 @@ import { SidebarComponent } from './core/components/sidebar/sidebar.component';
     HeaderComponent,
     PaginaInicialComponent,
     PaginaBlogComponent,
-    SidebarComponent
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
