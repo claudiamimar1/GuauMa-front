@@ -15,21 +15,13 @@
 
  .row {
      margin: 0 10px;
-     justify-content: right;
+     justify-content: center;
  }
 
  .row:after {
      content: "";
      display: table;
      clear: both;
- }
-
- @media screen and (max-width: 600px) {
-     .column {
-         width: 100%;
-         display: block;
-         margin-bottom: 20px;
-     }
  }
 
  .card {
@@ -43,4 +35,12 @@
      color: #000;
      background-color: #d9befb;
      border-color: #d9befb;
+ }
+
+ @media screen and (max-width: 600px) {
+     .column {
+         width: 100%;
+         display: block;
+         margin-bottom: 20px;
+     }
  }

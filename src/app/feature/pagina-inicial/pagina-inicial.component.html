@@ -1,12 +1,11 @@
 <div class="row">
-  <div class="column" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12]">
+  <div class="column" *ngFor="let negocio of datosNegocios">
     <div class="card">
-      <img src="..." class="card-img-top" alt="...">
+      <img src="{{negocio.imagen}}" class="card-img-top">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h5 class="card-title">{{negocio.nombre}}</h5>
+        <p class="card-text">{{negocio.descripcion}}</p>
+        <a href="#" class="btn btn-primary">Ver perfil</a>
       </div>
     </div>
   </div>
