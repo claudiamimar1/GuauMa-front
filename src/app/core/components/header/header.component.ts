@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +10,16 @@ export class HeaderComponent implements OnInit {
 
   public menuActive: boolean = false;
   public categoriaActive: boolean = false;
+  public isLogin: boolean = false;
 
-  constructor() { }
+  constructor(
+    public auth: AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
+      this.isLogin = isAuthenticated
+    });
   }
 
   mostrarMenu() {
@@ -21,6 +28,10 @@ export class HeaderComponent implements OnInit {
 
   mostrarCategoria() {
     this.categoriaActive = !this.categoriaActive;
+  }
+
+  logOut() {
+    this.auth.logout();
   }
 
 }

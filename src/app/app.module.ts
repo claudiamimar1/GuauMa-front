@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
 import { PerfilComponent } from './feature/perfil/perfil.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ServiciosComponent } from './feature/servicios/servicios.component';
+import { InicioSesionComponent } from './feature/inicio-sesion/inicio-sesion.component';
+import { AuthModule } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,18 @@ import { ServiciosComponent } from './feature/servicios/servicios.component';
     PaginaInicialComponent,
     PaginaBlogComponent,
     PerfilComponent,
-    ServiciosComponent
+    ServiciosComponent,
+    InicioSesionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthModule.forRoot({
+      domain: 'dev-bofx3gh2nrkzclxr.us.auth0.com',
+      clientId: 'ZHmm31MIaqMmZQMt81fy3gs13P5eT8Ib'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

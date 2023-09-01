@@ -1,0 +1,12 @@
+.div-inicio-sesion {
+    width: 50%;
+    position: absolute;
+    left: 25%;
+    text-align-last: center;
+    margin-top: 40px;
+}
+
+.btn-inicio-sesion {
+    margin: 12px;
+    background-color: #b1d1fb;
+}
