@@ -17,7 +17,7 @@ export class InicioSesionComponent implements OnInit {
   ngOnInit(): void {
     this.auth.isAuthenticated$.subscribe(isAuthenticated => {
       if(isAuthenticated) {
-        this.router.navigate(['/inicio-cuidado-animal'])
+        this.router.navigate(['/registro-datos']);
       }
     });
   }

@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ServiciosComponent } from './feature/servicios/servicios.component';
 import { InicioSesionComponent } from './feature/inicio-sesion/inicio-sesion.component';
 import { AuthModule } from '@auth0/auth0-angular';
+import { RegistroDatosPerfilComponent } from './feature/registro-datos-perfil/registro-datos-perfil.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AuthModule } from '@auth0/auth0-angular';
     PaginaBlogComponent,
     PerfilComponent,
     ServiciosComponent,
-    InicioSesionComponent
+    InicioSesionComponent,
+    RegistroDatosPerfilComponent
   ],
   imports: [
     BrowserModule,

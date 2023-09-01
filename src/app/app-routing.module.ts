@@ -5,10 +5,12 @@ import { PaginaInicialComponent } from './feature/pagina-inicial/pagina-inicial.
 import { PerfilComponent } from './feature/perfil/perfil.component';
 import { ServiciosComponent } from './feature/servicios/servicios.component';
 import { InicioSesionComponent } from './feature/inicio-sesion/inicio-sesion.component';
+import { RegistroDatosPerfilComponent } from './feature/registro-datos-perfil/registro-datos-perfil.component';
 
 
 const routes: Routes = [
   { path: '', component: InicioSesionComponent},
+  { path: 'registro-datos', component: RegistroDatosPerfilComponent},
   { path: 'inicio-cuidado-animal', component: PaginaInicialComponent},
   { path: 'blog-cuidado-animal', component: PaginaBlogComponent},
   { path: 'mi-perfil', component: PerfilComponent},
