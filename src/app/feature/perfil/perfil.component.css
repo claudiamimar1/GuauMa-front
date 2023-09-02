@@ -1,4 +1,4 @@
-.div-perfil {
+    .div-perfil {
     width: 50%;
     position: absolute;
     left: 25%;
@@ -12,6 +12,10 @@
     width: 25%;
 }
 
+option {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 h1,
 form {
     margin-top: 10px;
@@ -21,7 +25,7 @@ label {
     margin-bottom: 10px;
 }
 
-input {
+input, select, textarea {
     width: 35%;
     border-radius: 10px;
 }

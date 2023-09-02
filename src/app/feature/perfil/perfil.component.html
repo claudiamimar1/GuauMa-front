@@ -1,16 +1,64 @@
-<div class="div-perfil">
+<!-- <div class="div-perfil">
     <img class="img-perfil" src="./../../../assets/images/logo.png" />
     <h1>Información Personal</h1>
     <form [formGroup]="datosPerfil">
         <label for="nombres">Nombres:</label><br>
-        <input type="text" id="nombres" name="nombres" value="" formControlName="nombres" disabled><br><br>
+        <input type="text" id="nombres" name="nombres" value="" formControlName="nombres" [disabled]="noEditar"><br><br>
         <label for="apellidos">Apellidos:</label><br>
-        <input type="text" id="apellidos" name="apellidos" value="" formControlName="apellidos" disabled><br><br>
+        <input type="text" id="apellidos" name="apellidos" value="" formControlName="apellidos" [disabled]="noEditar"><br><br>
         <label for="correoElectronico">Correo Electronico:</label><br>
-        <input type="text" id="correoElectronico" name="correoElectronico" value="" formControlName="correoElectronico" disabled><br><br>
+        <input type="text" id="correoElectronico" name="correoElectronico" value="" formControlName="correoElectronico" [disabled]="noEditar"><br><br>
         <label for="numeroContacto">Número de Contacto:</label><br>
-        <input type="text" id="numeroContacto" name="numeroContacto" value="" formControlName="numeroContacto" disabled><br><br>
+        <input type="text" id="numeroContacto" name="numeroContacto" value="" formControlName="numeroContacto" [disabled]="noEditar"><br><br>
         <button class="btn btn-editar"><i class="fa fa-edit"></i> Editar</button>
-        <!-- <input type="submit" value="Submit"> -->
+        <input type="submit" value="Submit">
       </form> 
+</div> -->
+
+<div class="div-perfil">
+  <img class="img-perfil" src="./../../../assets/images/logo.png" />
+  <h1>Registro</h1>
+  <form [formGroup]="datosPerfil" *ngIf="datosPerfil">
+    <label for="rol">Rol</label><br>
+    <select name="rol" id="rol" value="" formControlName="rol" [disabled]="noEditar">
+      <option value="">Seleccione una opción</option>
+      <option value="consumidor">Consumidor</option>
+      <option value="proveedor">Proveedor</option>
+    </select><br><br>
+
+    <label for="razonSocial">Nombre Completo</label><br>
+    <input type="text" id="razonSocial" name="razonSocial" value="" formControlName="razonSocial" [disabled]="noEditar"><br><br>
+
+    <label for="tipoDocumento">Tipo de Documento</label><br>
+    <select name="tipoDocumento" id="tipoDocumento" value="" formControlName="tipoDocumento" disabled>
+      <option value="">Seleccione una opción</option>
+      <option value="C">Cedula</option>
+      <option value="E">Cedula Extranjeria</option>
+      <option value="A">Nit</option>
+      <option value="P">Pasaporte</option>
+    </select><br><br>
+
+    <label for="numeroDocumento">Número Documento</label><br>
+    <input type="number" id="numeroDocumento" name="numeroDocumento" value="" formControlName="numeroDocumento"
+      disabled><br><br>
+
+    <label for="numeroContacto">Número de Contacto</label><br>
+    <input type="number" id="numeroContacto" name="numeroContacto" value="" formControlName="numeroContacto"
+      [disabled]="noEditar"><br><br>
+
+
+    <label for="departamento">Departamento</label><br>
+    <input type="text" id="departamento" name="departamento" value="" formControlName="departamento" [disabled]="noEditar"><br><br>
+
+
+    <label for="ciudad">Ciudad</label><br>
+    <input type="text" id="ciudad" name="ciudad" value="" formControlName="ciudad" [disabled]="noEditar"><br><br>
+
+
+    <label for="direccion">Dirección</label><br>
+    <textarea id="direccion" name="direccion" value="" formControlName="direccion" [disabled]="noEditar"></textarea><br><br>
+
+    <button class="btn btn-editar" (click)="editarDatosUsuario()"><i class="fa fa-edit"></i> Editar</button>
+
+  </form>
 </div>
