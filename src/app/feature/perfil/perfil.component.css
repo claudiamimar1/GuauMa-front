@@ -28,9 +28,13 @@ label {
 input, select, textarea {
     width: 35%;
     border-radius: 10px;
+    cursor: text;
 }
 
 .btn-editar {
     margin-bottom: 10px;
     background-color: #b1d1fb;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
 }

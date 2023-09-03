@@ -1,36 +1,19 @@
-<!-- <div class="div-perfil">
-    <img class="img-perfil" src="./../../../assets/images/logo.png" />
-    <h1>Información Personal</h1>
-    <form [formGroup]="datosPerfil">
-        <label for="nombres">Nombres:</label><br>
-        <input type="text" id="nombres" name="nombres" value="" formControlName="nombres" [disabled]="noEditar"><br><br>
-        <label for="apellidos">Apellidos:</label><br>
-        <input type="text" id="apellidos" name="apellidos" value="" formControlName="apellidos" [disabled]="noEditar"><br><br>
-        <label for="correoElectronico">Correo Electronico:</label><br>
-        <input type="text" id="correoElectronico" name="correoElectronico" value="" formControlName="correoElectronico" [disabled]="noEditar"><br><br>
-        <label for="numeroContacto">Número de Contacto:</label><br>
-        <input type="text" id="numeroContacto" name="numeroContacto" value="" formControlName="numeroContacto" [disabled]="noEditar"><br><br>
-        <button class="btn btn-editar"><i class="fa fa-edit"></i> Editar</button>
-        <input type="submit" value="Submit">
-      </form> 
-</div> -->
-
 <div class="div-perfil">
   <img class="img-perfil" src="./../../../assets/images/logo.png" />
   <h1>Registro</h1>
   <form [formGroup]="datosPerfil" *ngIf="datosPerfil">
     <label for="rol">Rol</label><br>
-    <select name="rol" id="rol" value="" formControlName="rol" [disabled]="noEditar">
+    <select name="rol" id="rol" value="" formControlName="rol">
       <option value="">Seleccione una opción</option>
       <option value="consumidor">Consumidor</option>
       <option value="proveedor">Proveedor</option>
     </select><br><br>
 
     <label for="razonSocial">Nombre Completo</label><br>
-    <input type="text" id="razonSocial" name="razonSocial" value="" formControlName="razonSocial" [disabled]="noEditar"><br><br>
+    <input type="text" id="razonSocial" name="razonSocial" value="" formControlName="razonSocial"><br><br>
 
     <label for="tipoDocumento">Tipo de Documento</label><br>
-    <select name="tipoDocumento" id="tipoDocumento" value="" formControlName="tipoDocumento" disabled>
+    <select name="tipoDocumento" id="tipoDocumento" value="" formControlName="tipoDocumento">
       <option value="">Seleccione una opción</option>
       <option value="C">Cedula</option>
       <option value="E">Cedula Extranjeria</option>
@@ -40,25 +23,24 @@
 
     <label for="numeroDocumento">Número Documento</label><br>
     <input type="number" id="numeroDocumento" name="numeroDocumento" value="" formControlName="numeroDocumento"
-      disabled><br><br>
+    ><br><br>
 
     <label for="numeroContacto">Número de Contacto</label><br>
     <input type="number" id="numeroContacto" name="numeroContacto" value="" formControlName="numeroContacto"
-      [disabled]="noEditar"><br><br>
-
+    ><br><br>
 
     <label for="departamento">Departamento</label><br>
-    <input type="text" id="departamento" name="departamento" value="" formControlName="departamento" [disabled]="noEditar"><br><br>
-
+    <input type="text" id="departamento" name="departamento" value="" formControlName="departamento"><br><br>
 
     <label for="ciudad">Ciudad</label><br>
-    <input type="text" id="ciudad" name="ciudad" value="" formControlName="ciudad" [disabled]="noEditar"><br><br>
-
+    <input type="text" id="ciudad" name="ciudad" value="" formControlName="ciudad"><br><br>
 
     <label for="direccion">Dirección</label><br>
-    <textarea id="direccion" name="direccion" value="" formControlName="direccion" [disabled]="noEditar"></textarea><br><br>
+    <textarea id="direccion" name="direccion" value="" formControlName="direccion"></textarea><br><br>
 
-    <button class="btn btn-editar" (click)="editarDatosUsuario()"><i class="fa fa-edit"></i> Editar</button>
+    <button class="btn btn-editar" (click)="editarDatosUsuario()" [hidden]="editarCampos"><i class="fa fa-edit"></i> Editar</button>
+    <button class="btn btn-editar" (click)="guardarDatosNuevos()" [hidden]="!editarCampos"><i class="fa fa-save"></i> Guardar</button>
+    <button class="btn btn-editar" (click)="cancelarModificacion()" [hidden]="!editarCampos"><i class="fa fa-cancel"></i> Cancelar</button>
 
   </form>
 </div>
