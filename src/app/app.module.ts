@@ -13,6 +13,7 @@ import { ServiciosComponent } from './feature/servicios/servicios.component';
 import { InicioSesionComponent } from './feature/inicio-sesion/inicio-sesion.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { RegistroDatosPerfilComponent } from './feature/registro-datos-perfil/registro-datos-perfil.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { RegistroDatosPerfilComponent } from './feature/registro-datos-perfil/re
       domain: 'dev-bofx3gh2nrkzclxr.us.auth0.com',
       clientId: 'ZHmm31MIaqMmZQMt81fy3gs13P5eT8Ib'
     }),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

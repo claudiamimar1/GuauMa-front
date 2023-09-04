@@ -61,7 +61,7 @@ table td {
     cursor: pointer;
 }
 
-input {
+input, select, textarea {
     outline: none;
     background-color: transparent;
     border: 0;
