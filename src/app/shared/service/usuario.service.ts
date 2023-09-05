@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment'
-import { Rol } from 'src/app/shared/model/rol'
-import { TipoIdentificacion } from 'src/app/shared/model/tipoIdentificacion'
-import { Pais } from 'src/app/shared/model/Pais'
+import { environment } from 'src/environments/environment';
+import { Rol } from 'src/app/shared/model/rol';
+import { TipoIdentificacion } from 'src/app/shared/model/tipoIdentificacion';
+import { Pais } from 'src/app/shared/model/pais';
+import { Departamento } from 'src/app/shared/model/departamento';
+import { Municipio } from 'src/app/shared/model/municipio';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,7 @@ export class UsuarioService {
   public urlConsultarTipoIdentificacion: string = `${environment.url}/tipo-identificacion`;
   public urlConsultarPais: string = `${environment.url}/pais`;
   public urlConsultarDepartamentos: string = `${environment.url}/departamentos`;
+  public urlConsultarMunicipios: string = `${environment.url}/municipios`;
 
   constructor(
     protected http: HttpClient
@@ -32,6 +35,10 @@ export class UsuarioService {
   }
   
   public consultarDepartamento(codigoPais) {
-    return this.http.get<TipoIdentificacion>(`${this.urlConsultarDepartamentos}?codigoPais=${codigoPais}`);
+    return this.http.get<Departamento>(`${this.urlConsultarDepartamentos}?codigoPais=${codigoPais}`);
+  }
+
+  public consultarMunicipios(codigoDepartamento) {
+    return this.http.get<Municipio>(`${this.urlConsultarMunicipios}?codigoDepartamento=${codigoDepartamento}`);
   }
 }

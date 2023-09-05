@@ -17,6 +17,7 @@ export class RegistroDatosPerfilComponent implements OnInit {
   public tipoIdentificaciones: Array<any> = [];
   public paises: Array<any> = [];
   public departamentos: Array<any> = [];
+  public municipios: Array<any> = [];
 
   constructor(
     public auth: AuthService,
@@ -72,6 +73,20 @@ export class RegistroDatosPerfilComponent implements OnInit {
       }));
     } else {
       this.departamentos = [];
+      this.municipios = [];
+    }
+  }
+
+  public cargarMunicipios(value) {
+    let codigoDepartamento = value.target.value;
+    if (codigoDepartamento !== '') {
+      this.usuarioService.consultarMunicipios(value.target.value).subscribe(response => {
+        this.municipios = response.data;
+      }, (error => {
+        console.log(error);
+      }));
+    } else {
+      this.municipios = [];
     }
   }
 

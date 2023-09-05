@@ -31,14 +31,16 @@
         </select><br><br>
 
         <label for="departamento">Departamento</label><br>
-        <select name="departamento" id="departamento" value="" formControlName="departamento">
+        <select name="departamento" id="departamento" value="" formControlName="departamento" (change)="cargarMunicipios($event)">
             <option value="">Seleccione una opción</option>
-            <option value="departamento.idDepartamento" *ngFor="let departamento of departamentos">{{departamento.nombre}}</option>
+            <option [value]="departamento.codigo" *ngFor="let departamento of departamentos">{{departamento.nombre}}</option>
         </select><br><br>
 
         <label for="ciudad">Ciudad</label><br>
-        <input type="text" id="ciudad" name="ciudad" value="" formControlName="ciudad"><br><br>
-
+        <select name="ciudad" id="ciudad" value="" formControlName="ciudad">
+            <option value="">Seleccione una opción</option>
+            <option [value]="ciudad.idMunicipio" *ngFor="let ciudad of municipios">{{ciudad.nombre}}</option>
+        </select><br><br>
 
         <label for="direccion">Dirección</label><br>
         <textarea id="direccion" name="direccion" value="" formControlName="direccion"></textarea><br><br>
