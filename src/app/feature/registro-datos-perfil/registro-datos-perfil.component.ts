@@ -46,18 +46,21 @@ export class RegistroDatosPerfilComponent implements OnInit {
   public cargarDatos() {
     this.usuarioService.consultarRol().subscribe(response => {
       this.roles = response.data;
+      this.roles.sort((a,b) => a.nombre > b.nombre ? 1 : -1);
     }, (error => {
       console.log(error);
     }));
 
     this.usuarioService.consultarTipoIdentificacion().subscribe(response => {
       this.tipoIdentificaciones = response.data;
+      this.tipoIdentificaciones.sort((a,b) => a.descripcion > b.descripcion ? 1 : -1);
     }, (error => {
       console.log(error);
     }));
 
     this.usuarioService.consultarPais().subscribe(response => {
       this.paises = response.data;
+      this.paises.sort((a,b) => a.nombre > b.nombre ? 1 : -1);
     }, (error => {
       console.log(error);
     }));
@@ -68,6 +71,7 @@ export class RegistroDatosPerfilComponent implements OnInit {
     if (codigoPais !== '') {
       this.usuarioService.consultarDepartamento(value.target.value).subscribe(response => {
         this.departamentos = response.data;
+        this.departamentos.sort((a,b) => a.nombre > b.nombre ? 1 : -1);
       }, (error => {
         console.log(error);
       }));
@@ -82,6 +86,7 @@ export class RegistroDatosPerfilComponent implements OnInit {
     if (codigoDepartamento !== '') {
       this.usuarioService.consultarMunicipios(value.target.value).subscribe(response => {
         this.municipios = response.data;
+        this.municipios.sort((a,b) => a.nombre > b.nombre ? 1 : -1);
       }, (error => {
         console.log(error);
       }));

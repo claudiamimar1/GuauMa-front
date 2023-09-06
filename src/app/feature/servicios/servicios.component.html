@@ -5,63 +5,54 @@
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Precio</th>
-            <th>Fecha publicación</th>
-            <th>Estado</th>
-            <th>Imagen</th>
+            <th>Categoria</th>
             <th>Acciones</th>
         </tr>
         <tr *ngFor="let servicio of datosServicios">
-            <td id="nombre-{{servicio.id}}"><input type="text" id="nombre-{{servicio.nombre}}" [value]="servicio.nombre" [disabled]="noEditar"></td>
-            <td id="descripcion-{{servicio.id}}">{{servicio.descripcion}}</td>
-            <td id="precio-{{servicio.id}}">{{servicio.precio}}</td>
-            <td id="fechaPublicacion-{{servicio.id}}">{{servicio.fechaPublicacion}}</td>
-            <td id="estado-{{servicio.id}}">{{servicio.estado}}</td>
-            <td id="imagen-{{servicio.id}}"><a href="servicio.imagen">Imagen</a></td>
             <td>
-                <button class="btn btn-editar"><i class="fa fa-edit" id="editar-{{servicio.id}}" (click)="editarServicio($event.target.id)"></i></button>
+                <input type="text" id="nombre" [value]="servicio.nombre" [disabled] = "noEditar">
+            </td>
+            <td>
+                <textarea id="descripcion" [value]="servicio.descripcion" [disabled] = "noEditar"></textarea>
+            </td>
+            <td id="precio">
+                $<input type="number" id="precio" [value]="servicio.precio" [disabled] = "noEditar">
+            </td>
+            <td>
+                <select id="categoria" [value]="servicio.categoria" [disabled] = "noEditar">
+                    <option value="accesorios">Accesorios</option>
+                    <option value="spa">Spa</option>
+                    <option value="entretenimiento">Entretenimiento</option>
+                </select>
+            </td>
+            <td>
+                <button class="btn btn-editar"><i class="fa fa-edit" id="editar-{{servicio.id}}"
+                        (click)="guardarNuevoServicio($event.target.id)"></i></button>
             </td>
         </tr>
         <tr *ngIf="agregarServicio">
-            <td><input type="text" id="nombre" formControlName="nombre" [disabled]="!agregarServicio"></td>
             <td>
+                <input type="text" id="nombre" formControlName="nombre">
             </td>
             <td>
+                <textarea id="descripcion"  formControlName="descripcion"></textarea>
             </td>
             <td>
+                $<input type="number" id="precio" formControlName="precio">
             </td>
             <td>
-            </td>
-            <td>
-                <div class="image-upload">
-                    <label for="file-input">
-                        <i class="fa fa-upload"></i>
-                    </label>
-                    <input id="file-input" type="file"/>
-                </div>
+                <select id="categoria" value="" formControlName="categoria">
+                    <option value="">Seleccione una opción</option>
+                    <option [value]="cat.nombre" *ngFor="let cat of categorias">{{cat.nombre}}</option>
+                </select>
             </td>
             <td>
                 <button class="btn btn-editar" (click)="guardarNuevoServicio()"><i class="fa fa-save"></i></button>
             </td>
         </tr>
     </table>
-    <button class="btn btn-agregar" (click)="agregarNuevoServicio(true)"><i class="fa fa-plus"></i> Agregar servicio</button>
-    <button class="btn btn-cancelar" *ngIf="agregarServicio" (click)="agregarNuevoServicio(false)"><i class="fa fa-cancel"></i> Cancelar</button>
+    <button class="btn btn-agregar" (click)="agregarNuevoServicio(true)"><i class="fa fa-plus"></i> Agregar
+        servicio</button>
+    <button class="btn btn-cancelar" *ngIf="agregarServicio" (click)="agregarNuevoServicio(false)"><i
+            class="fa fa-cancel"></i> Cancelar</button>
 </div>
-
-
-<!-- <tr *ngIf="agregarServicio">
-    <td ><input type="text" id="nombre" formControlName="nombre"></td>
-    <td><textarea type="text" id="descripcion" formControlName="descripcion"></textarea></td>
-    <td><input type="text" id="precio" formControlName="precio"></td>
-    <td><input type="text" id="fechaPublicacion" formControlName="fechaPublicacion" disabled></td>
-    <td><input type="text" id="estado" formControlName="estado"></td>
-    <td [contentEditable]="false">
-        <div class="image-upload">
-            <label for="file-input"><i class="fa fa-upload"></i></label>
-            <input id="file-input" type="file" />
-        </div>
-    </td>
-    <td>
-        <button class="btn btn-editar" (click)="guardarNuevoServicio()"><i class="fa fa-save"></i></button>
-    </td>
-</tr> -->

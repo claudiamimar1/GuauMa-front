@@ -12,11 +12,11 @@ import { Municipio } from 'src/app/shared/model/municipio';
 })
 export class UsuarioService {
 
-  public urlConsultarRol: string = `${environment.url}/roles`;
-  public urlConsultarTipoIdentificacion: string = `${environment.url}/tipo-identificacion`;
-  public urlConsultarPais: string = `${environment.url}/pais`;
-  public urlConsultarDepartamentos: string = `${environment.url}/departamentos`;
-  public urlConsultarMunicipios: string = `${environment.url}/municipios`;
+  private urlConsultarRol: string = `${environment.url}/usuario/roles`;
+  private urlConsultarTipoIdentificacion: string = `${environment.url}/usuario/tipo-identificacion`;
+  private urlConsultarPais: string = `${environment.url}/usuario/pais`;
+  private urlConsultarDepartamentos: string = `${environment.url}/usuario/departamentos`;
+  private urlConsultarMunicipios: string = `${environment.url}/usuario/municipios`;
 
   constructor(
     protected http: HttpClient
