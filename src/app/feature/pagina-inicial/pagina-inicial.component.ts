@@ -18,7 +18,7 @@ export class PaginaInicialComponent extends InicioSesionComponent implements OnI
     public router: Router,
     public usuarioService: UsuarioService
   ) {
-    super(auth, router, usuarioService)
+    super(auth, router, usuarioService);
   }
 
   ngOnInit(): void {
@@ -27,40 +27,40 @@ export class PaginaInicialComponent extends InicioSesionComponent implements OnI
     });
     this.cargarDatos();
   }
-  
-  private cargarDatos() {
+
+  private cargarDatos(): void {
     this.datosNegocios = [
       {
-        'id' : 1,
-        'nombre': 'San Blass',
-        'descripcion': 'Veterinaria',
-        'fechaPublicacion': `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
-        'estado': 'Activo',
-        'imagen': './../../../assets/images/logo.png'
+        id: 1,
+        nombre: 'San Blass',
+        descripcion: 'Veterinaria',
+        fechaPublicacion: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
+        estado: 'Activo',
+        imagen: './../../../assets/images/logo.png'
       },
       {
-        'id' : 2,
-        'nombre': 'Oh, my pets',
-        'descripcion': 'Tienda',
-        'fechaPublicacion': `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
-        'estado': 'Activo',
-        'imagen': './../../../assets/images/logo.png'
+        id: 2,
+        nombre: 'Oh, my pets',
+        descripcion: 'Tienda',
+        fechaPublicacion: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
+        estado: 'Activo',
+        imagen: './../../../assets/images/logo.png'
       },
       {
-        'id' : 3,
-        'nombre': 'Paseadora',
-        'descripcion': 'Tienda',
-        'fechaPublicacion': `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
-        'estado': 'Activo',
-        'imagen': './../../../assets/images/logo.png'
+        id: 3,
+        nombre: 'Paseadora',
+        descripcion: 'Tienda',
+        fechaPublicacion: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
+        estado: 'Activo',
+        imagen: './../../../assets/images/logo.png'
       },
       {
-        'id' : 3,
-        'nombre': 'Paseadora',
-        'descripcion': 'Paseo perros de lunes a viernes',
-        'fechaPublicacion': `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
-        'estado': 'Activo',
-        'imagen': './../../../assets/images/logo.png'
+        id: 3,
+        nombre: 'Paseadora',
+        descripcion: 'Paseo perros de lunes a viernes',
+        fechaPublicacion: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
+        estado: 'Activo',
+        imagen: './../../../assets/images/logo.png'
       }
     ];
   }

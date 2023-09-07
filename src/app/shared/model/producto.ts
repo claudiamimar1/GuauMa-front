@@ -10,5 +10,5 @@ export class Producto {
             descripcion: string;
         };
         numeroIdentificacion: number;
-    }
+    };
 }

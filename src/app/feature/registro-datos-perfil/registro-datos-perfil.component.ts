@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
-import { Rol } from 'src/app/shared/model/rol';
-import { UsuarioService } from 'src/app/shared/service/usuario.service'
+import { UsuarioService } from 'src/app/shared/service/usuario.service';
 import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component';
 
 @Component({
@@ -14,7 +13,7 @@ import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component'
 export class RegistroDatosPerfilComponent extends InicioSesionComponent implements OnInit {
 
   public datosUsuario: FormGroup;
-  public email: string = '';
+  public email = '';
   public roles: Array<any> = [];
   public tipoIdentificaciones: Array<any> = [];
   public paises: Array<any> = [];
@@ -26,7 +25,7 @@ export class RegistroDatosPerfilComponent extends InicioSesionComponent implemen
     public router: Router,
     public usuarioService: UsuarioService
   ) {
-    super(auth, router, usuarioService)
+    super(auth, router, usuarioService);
   }
 
   ngOnInit(): void {
@@ -52,35 +51,35 @@ export class RegistroDatosPerfilComponent extends InicioSesionComponent implemen
     }, 1500);
   }
 
-  public cargarDatos() {
+  public cargarDatos(): void {
     this.usuarioService.consultarRol().subscribe(response => {
       this.roles = response.data;
-      this.roles.sort((a,b) => a.nombre > b.nombre ? 1 : -1);
+      this.roles.sort((a, b) => a.nombre > b.nombre ? 1 : -1);
     }, (error => {
       console.log(error);
     }));
 
     this.usuarioService.consultarTipoIdentificacion().subscribe(response => {
       this.tipoIdentificaciones = response.data;
-      this.tipoIdentificaciones.sort((a,b) => a.descripcion > b.descripcion ? 1 : -1);
+      this.tipoIdentificaciones.sort((a, b) => a.descripcion > b.descripcion ? 1 : -1);
     }, (error => {
       console.log(error);
     }));
 
     this.usuarioService.consultarPais().subscribe(response => {
       this.paises = response.data;
-      this.paises.sort((a,b) => a.nombre > b.nombre ? 1 : -1);
+      this.paises.sort((a, b) => a.nombre > b.nombre ? 1 : -1);
     }, (error => {
       console.log(error);
     }));
   }
 
-  public cargarDepartamentos(value) {
-    let codigoPais = value.target.value;
+  public cargarDepartamentos(value): void {
+    const codigoPais = value.target.value;
     if (codigoPais !== '') {
       this.usuarioService.consultarDepartamento(value.target.value).subscribe(response => {
         this.departamentos = response.data;
-        this.departamentos.sort((a,b) => a.nombre > b.nombre ? 1 : -1);
+        this.departamentos.sort((a, b) => a.nombre > b.nombre ? 1 : -1);
       }, (error => {
         console.log(error);
       }));
@@ -90,12 +89,12 @@ export class RegistroDatosPerfilComponent extends InicioSesionComponent implemen
     }
   }
 
-  public cargarMunicipios(value) {
-    let codigoDepartamento = value.target.value;
+  public cargarMunicipios(value): void {
+    const codigoDepartamento = value.target.value;
     if (codigoDepartamento !== '') {
       this.usuarioService.consultarMunicipios(value.target.value).subscribe(response => {
         this.municipios = response.data;
-        this.municipios.sort((a,b) => a.nombre > b.nombre ? 1 : -1);
+        this.municipios.sort((a, b) => a.nombre > b.nombre ? 1 : -1);
       }, (error => {
         console.log(error);
       }));
@@ -104,7 +103,7 @@ export class RegistroDatosPerfilComponent extends InicioSesionComponent implemen
     }
   }
 
-  public registrarUsuario() {
+  public registrarUsuario(): void {
     if (this.datosUsuario.valid) {
       console.log(this.datosUsuario.valid);
     } else {

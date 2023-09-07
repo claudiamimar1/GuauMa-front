@@ -9,9 +9,9 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 export class HeaderComponent implements OnInit {
 
-  public menuActive: boolean = false;
-  public categoriaActive: boolean = false;
-  public isLogin: boolean = false;
+  public menuActive = false;
+  public categoriaActive = false;
+  public isLogin = false;
 
   constructor(
     public auth: AuthService,
@@ -19,20 +19,17 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
-      this.isLogin = isAuthenticated && this.router.url !== '/registro-datos';
-    });
   }
 
-  mostrarMenu() {
+  mostrarMenu(): void {
     this.menuActive = !this.menuActive;
   }
 
-  mostrarCategoria() {
+  mostrarCategoria(): void {
     this.categoriaActive = !this.categoriaActive;
   }
 
-  logOut() {
+  logOut(): void {
     this.auth.logout();
   }
 

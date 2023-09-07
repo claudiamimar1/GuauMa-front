@@ -13,14 +13,14 @@ import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component'
 export class PerfilComponent extends InicioSesionComponent implements OnInit {
 
   public datosPerfil: FormGroup;
-  public editarCampos: boolean = false;
+  public editarCampos = false;
 
   constructor(
     public auth: AuthService,
     public router: Router,
     public usuarioService: UsuarioService
   ) {
-    super(auth, router, usuarioService)
+    super(auth, router, usuarioService);
   }
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class PerfilComponent extends InicioSesionComponent implements OnInit {
     this.cargarDatos();
   }
 
-  private cargarDatos() {
+  private cargarDatos(): void {
     this.datosPerfil = new FormGroup({
       razonSocial: new FormControl({ value: 'Carolina Marín Hincapié', disabled: true }, Validators.required),
       tipoDocumento: new FormControl({ value: 'C', disabled: true }, Validators.required),
@@ -44,7 +44,7 @@ export class PerfilComponent extends InicioSesionComponent implements OnInit {
     });
   }
 
-  public editarDatosUsuario() {
+  public editarDatosUsuario(): void {
     this.datosPerfil.get('razonSocial').enable();
     this.datosPerfil.get('rol').enable();
     this.datosPerfil.get('numeroContacto').enable();
@@ -54,7 +54,7 @@ export class PerfilComponent extends InicioSesionComponent implements OnInit {
     this.editarCampos = true;
   }
 
-  public cancelarModificacion() {
+  public cancelarModificacion(): void {
     this.datosPerfil.get('razonSocial').disable();
     this.datosPerfil.get('rol').disable();
     this.datosPerfil.get('numeroContacto').disable();
@@ -64,7 +64,7 @@ export class PerfilComponent extends InicioSesionComponent implements OnInit {
     this.editarCampos = false;
   }
 
-  public guardarDatosNuevos() {
+  public guardarDatosNuevos(): void {
     this.cancelarModificacion();
     this.editarCampos = false;
   }

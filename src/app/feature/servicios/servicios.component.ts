@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { Producto } from 'src/app/shared/model/producto';
-import { ProductoService } from 'src/app/shared/service/producto.service'
+import { ProductoService } from 'src/app/shared/service/producto.service';
 import { UsuarioService } from 'src/app/shared/service/usuario.service';
 import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component';
 
@@ -15,15 +15,14 @@ import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component'
 export class ServiciosComponent extends InicioSesionComponent implements OnInit {
 
   public datosServicios = [];
-  public noEditar: boolean = true;
-  public agregarServicio: boolean = false;
+  public noEditar = true;
+  public agregarServicio = false;
   public nuevoServicio: FormGroup;
-  public nombreEditar: string = '';
-  public descripcionEditar: string = '';
-  public precioEditar: number = 0;
-  public fechaPublicacionEditar: Date = new Date();
-  public estadoEditar: string = '';
-  public categoriaEditar: string = '';
+  public nombreEditar = '';
+  public descripcionEditar = '';
+  public precioEditar = 0;
+  public estadoEditar = '';
+  public categoriaEditar = '';
   public categorias = [];
 
   constructor(
@@ -32,7 +31,7 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
     public router: Router,
     public usuarioService: UsuarioService
   ) {
-    super(auth, router, usuarioService)
+    super(auth, router, usuarioService);
   }
   ngOnInit(): void {
     this.auth.isAuthenticated$.subscribe(isAuthenticated => {
@@ -47,7 +46,7 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
     this.cargarDatos();
   }
 
-  private cargarDatos() {
+  private cargarDatos(): void {
     this.productoService.consultarCategoria().subscribe(response => {
       this.categorias = response.data;
       this.categorias.sort((a, b) => a.nombre > b.nombre ? 1 : -1);
@@ -57,29 +56,29 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
 
     this.datosServicios = [
       {
-        'id': 1,
-        'nombre': 'Spa',
-        'descripcion': 'Baño sencillo: Incluye corte de uñas',
-        'precio': 50000,
-        'categoria': 'spa'
+        id: 1,
+        nombre: 'Spa',
+        descripcion: 'Baño sencillo: Incluye corte de uñas',
+        precio: 50000,
+        categoria: 'spa'
       },
       {
-        'id': 2,
-        'nombre': 'Guarderia',
-        'descripcion': 'Dia de guarderia: Se realizan diferentes actividades durante le dia',
-        'precio': 60000,
-        'categoria': 'entretenimiento'
+        id: 2,
+        nombre: 'Guarderia',
+        descripcion: 'Dia de guarderia: Se realizan diferentes actividades durante le dia',
+        precio: 60000,
+        categoria: 'entretenimiento'
       }
     ];
   }
 
-  public agregarNuevoServicio(value: boolean) {
+  public agregarNuevoServicio(value): void {
     this.agregarServicio = value;
   }
 
-  public guardarNuevoServicio() {
+  public guardarNuevoServicio(): void {
     if (this.nuevoServicio.valid) {
-      let body: Producto = {
+      const body: Producto = {
         nombre: this.nuevoServicio.controls.nombre.value,
         descripcion: this.nuevoServicio.controls.descripcion.value,
         precio: this.nuevoServicio.controls.precio.value,
@@ -92,11 +91,10 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
           },
           numeroIdentificacion: 1094957383,
         }
-      }
+      };
       this.productoService.guardarProducto(body).subscribe(e => {
         alert('Se registro correctamente el producto');
-      })
-
+      });
     } else {
       alert('Ingrese todos los datos');
     }

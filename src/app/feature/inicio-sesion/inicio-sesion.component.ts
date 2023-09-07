@@ -22,11 +22,11 @@ export class InicioSesionComponent implements OnInit {
     });
   }
 
-  public iniciarSesion() {
+  public iniciarSesion(): void {
     this.auth.loginWithRedirect();
   }
 
-  public consultarUsuario(isAuthenticated, enlace) {
+  public consultarUsuario(isAuthenticated, enlace): void {
     if (isAuthenticated) {
       this.auth.user$.subscribe(user => {
         this.usuarioService.consultarUsuarios(user.email).subscribe(response => {
@@ -43,5 +43,4 @@ export class InicioSesionComponent implements OnInit {
       this.router.navigate(['/']);
     }
   }
-
 }
