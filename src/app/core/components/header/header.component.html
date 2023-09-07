@@ -2,13 +2,13 @@
     <div class="div-header">
         <div class="contenedor-header">
             <img class="logo-aplicacion" src="./../../../../assets/images/logo.png" />
-            <h1 class="nombre-aplicacion">El Guardian de tu Mascota</h1>
+            <h1 class="nombre-aplicacion">El Guardián de tu Mascota</h1>
         </div>
         <button class="btn btn-menu" (click)="mostrarMenu()" *ngIf="isLogin"><i class="fa fa-user"></i></button>
         <div class="div-menu" [ngClass]="{ 'div-menu-active': menuActive }">
-            <a class="dropdown-item" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mi Perfil</a>
-            <a class="dropdown-item" [routerLink]="['mis-servicios']" (click)="mostrarMenu()">Mis servicios</a>
-            <a class="dropdown-item" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mis Publicaciones</a>
+            <a class="dropdown-item" *ngIf="isLogin" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mi Perfil</a>
+            <a class="dropdown-item" *ngIf="isLogin" [routerLink]="['mis-servicios']" (click)="mostrarMenu()">Mis servicios</a>
+            <a class="dropdown-item" *ngIf="isLogin" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mis Publicaciones</a>
             <a class="dropdown-item" (click)="logOut()">Cerrar Sesión</a>
         </div>
     </div>
@@ -17,7 +17,7 @@
             <li class="nav-item dropdown" (click)="mostrarCategoria()">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    Categoria
+                    Categoría
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" [ngClass]="{ 'div-categoria-active': categoriaActive }">
                     <a class="dropdown-item" href="#">Accesorios</a>

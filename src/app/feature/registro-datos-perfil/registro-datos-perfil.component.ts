@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { Rol } from 'src/app/shared/model/rol';
 import { UsuarioService } from 'src/app/shared/service/usuario.service'
+import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component';
 
 @Component({
   selector: 'app-registro-datos-perfil',
   templateUrl: './registro-datos-perfil.component.html',
   styleUrls: ['./registro-datos-perfil.component.css']
 })
-export class RegistroDatosPerfilComponent implements OnInit {
+export class RegistroDatosPerfilComponent extends InicioSesionComponent implements OnInit {
 
   public datosUsuario: FormGroup;
   public email: string = '';
@@ -21,10 +23,17 @@ export class RegistroDatosPerfilComponent implements OnInit {
 
   constructor(
     public auth: AuthService,
+    public router: Router,
     public usuarioService: UsuarioService
-  ) { }
+  ) {
+    super(auth, router, usuarioService)
+  }
 
   ngOnInit(): void {
+    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
+      this.consultarUsuario(isAuthenticated, '/registro-datos');
+    });
+
     this.auth.user$.subscribe(user => this.email = user.email);
     this.cargarDatos();
     setTimeout(() => {

@@ -1,4 +1,4 @@
-export class Usuairo {
+export class Usuario {
     exitoso: boolean;
     mensajes: Array<string>;
     data: [

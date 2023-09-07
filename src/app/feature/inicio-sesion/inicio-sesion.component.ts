@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
+import { UsuarioService } from 'src/app/shared/service/usuario.service';
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -11,16 +12,13 @@ export class InicioSesionComponent implements OnInit {
 
   constructor(
     public auth: AuthService,
-    private router: Router
+    public router: Router,
+    public usuarioService: UsuarioService
   ) { }
 
   ngOnInit(): void {
     this.auth.isAuthenticated$.subscribe(isAuthenticated => {
-      if(isAuthenticated && !this.consultarUsuario()) {
-        this.router.navigate(['/registro-datos']);
-      } else if (isAuthenticated && this.consultarUsuario()) {
-        this.router.navigate(['/inicio-cuidado-animal']);
-      }
+      this.consultarUsuario(isAuthenticated, '/inicio-cuidado-animal');
     });
   }
 
@@ -28,9 +26,22 @@ export class InicioSesionComponent implements OnInit {
     this.auth.loginWithRedirect();
   }
 
-  public consultarUsuario() {
-    // Se consume servicio para saber si el usuario existe
-    return true;
+  public consultarUsuario(isAuthenticated, enlace) {
+    if (isAuthenticated) {
+      this.auth.user$.subscribe(user => {
+        this.usuarioService.consultarUsuarios(user.email).subscribe(response => {
+          if (response.codigoHttp === 202) {
+            this.router.navigate([enlace]);
+          } else if (response.codigoHttp === 500) {
+            this.router.navigate(['/registro-datos']);
+          }
+        }, (error => {
+          this.router.navigate(['/registro-datos']);
+        }));
+      });
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 
 }

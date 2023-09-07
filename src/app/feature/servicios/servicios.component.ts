@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 import { Producto } from 'src/app/shared/model/producto';
 import { ProductoService } from 'src/app/shared/service/producto.service'
+import { UsuarioService } from 'src/app/shared/service/usuario.service';
+import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component';
 
 @Component({
   selector: 'app-servicios',
   templateUrl: './servicios.component.html',
   styleUrls: ['./servicios.component.css']
 })
-export class ServiciosComponent implements OnInit {
+export class ServiciosComponent extends InicioSesionComponent implements OnInit {
 
   public datosServicios = [];
   public noEditar: boolean = true;
@@ -23,10 +27,17 @@ export class ServiciosComponent implements OnInit {
   public categorias = [];
 
   constructor(
-    public productoService: ProductoService
-  ) { }
-
+    public productoService: ProductoService,
+    public auth: AuthService,
+    public router: Router,
+    public usuarioService: UsuarioService
+  ) {
+    super(auth, router, usuarioService)
+  }
   ngOnInit(): void {
+    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
+      this.consultarUsuario(isAuthenticated, '/mis-servicios');
+    });
     this.nuevoServicio = new FormGroup({
       nombre: new FormControl('', Validators.required),
       descripcion: new FormControl('', Validators.required),
@@ -68,37 +79,20 @@ export class ServiciosComponent implements OnInit {
 
   public guardarNuevoServicio() {
     if (this.nuevoServicio.valid) {
-      let categoria = this.categorias.filter(cat => cat.idCategoria = this.nuevoServicio.controls.categoria.value);
       let body: Producto = {
-        idProducto: 0,
         nombre: this.nuevoServicio.controls.nombre.value,
         descripcion: this.nuevoServicio.controls.descripcion.value,
         precio: this.nuevoServicio.controls.precio.value,
         nombreCategoria: this.nuevoServicio.controls.categoria.value,
         usuario: {
-          idUsuario: 3,
           tipoIdentificacion: {
             idTipoIdentificacion: 1,
-            nombre: 'C',
+            nombre: 'CC',
             descripcion: 'Cedula',
           },
           numeroIdentificacion: 1094957383,
-          nombreRazonSocial: 'Carolina Marín Hincapié',
-          correo: 'cmarinh@uqvirtual.edu.co',
-          celular: '3116595201',
-          direccion: {
-            idDireccion: 2,
-            descripcion: 'Carrera 6 #19-25',
-            codigoMunicipio: 4
-          },
-          rol: {
-            idRol: 1,
-            nombre: 'Proveedor',
-            descripcion: 'Proveedor',
-          }
         }
       }
-      debugger;
       this.productoService.guardarProducto(body).subscribe(e => {
         alert('Se registro correctamente el producto');
       })

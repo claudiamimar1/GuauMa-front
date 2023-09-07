@@ -1,20 +1,33 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
+import { UsuarioService } from 'src/app/shared/service/usuario.service';
+import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component';
 
 @Component({
   selector: 'app-pagina-inicial',
   templateUrl: './pagina-inicial.component.html',
   styleUrls: ['./pagina-inicial.component.css']
 })
-export class PaginaInicialComponent implements OnInit {
+export class PaginaInicialComponent extends InicioSesionComponent implements OnInit {
 
   public datosNegocios = [];
 
-  constructor() { }
-
-  ngOnInit(): void {
-    this.cargarDatos();
+  constructor(
+    public auth: AuthService,
+    public router: Router,
+    public usuarioService: UsuarioService
+  ) {
+    super(auth, router, usuarioService)
   }
 
+  ngOnInit(): void {
+    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
+      this.consultarUsuario(isAuthenticated, '/inicio-cuidado-animal');
+    });
+    this.cargarDatos();
+  }
+  
   private cargarDatos() {
     this.datosNegocios = [
       {
