@@ -20,6 +20,7 @@ export class UsuarioService {
   private urlConsultarDepartamentos = `${environment.url}/usuario/departamentos`;
   private urlConsultarMunicipios = `${environment.url}/usuario/municipios`;
   private urlConsultarUsuarios = `${environment.url}/usuario`;
+  private urlConsultarProveedores = `${environment.url}/usuario/lista-proveedores`;
 
   constructor(
     protected http: HttpClient
@@ -47,5 +48,9 @@ export class UsuarioService {
 
   public consultarUsuarios(correo): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.urlConsultarUsuarios}?correo=${correo}`);
+  }
+
+  public consultarProveedores(rol): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.urlConsultarProveedores}?nombre_rol=${rol}`);
   }
 }

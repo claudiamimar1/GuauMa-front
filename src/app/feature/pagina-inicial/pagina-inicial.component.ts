@@ -29,40 +29,21 @@ export class PaginaInicialComponent extends InicioSesionComponent implements OnI
   }
 
   private cargarDatos(): void {
-    this.datosNegocios = [
-      {
-        id: 1,
-        nombre: 'San Blass',
-        descripcion: 'Veterinaria',
-        fechaPublicacion: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
-        estado: 'Activo',
-        imagen: './../../../assets/images/logo.png'
-      },
-      {
-        id: 2,
-        nombre: 'Oh, my pets',
-        descripcion: 'Tienda',
-        fechaPublicacion: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
-        estado: 'Activo',
-        imagen: './../../../assets/images/logo.png'
-      },
-      {
-        id: 3,
-        nombre: 'Paseadora',
-        descripcion: 'Tienda',
-        fechaPublicacion: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
-        estado: 'Activo',
-        imagen: './../../../assets/images/logo.png'
-      },
-      {
-        id: 3,
-        nombre: 'Paseadora',
-        descripcion: 'Paseo perros de lunes a viernes',
-        fechaPublicacion: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
-        estado: 'Activo',
-        imagen: './../../../assets/images/logo.png'
+    this.usuarioService.consultarProveedores('Proveedor').subscribe(response => {
+      if(response.data.length > 0) {
+        response.data.forEach(res => {
+          let negocio = {
+            id: res.idUsuario,
+            nombre: res.nombreRazonSocial,
+            imagen: './../../../assets/images/logo.png'
+          }
+          this.datosNegocios.push(negocio);
+        })
+        
+      } else {
+        alert('No se encontraron datos de negocios');
       }
-    ];
+    });
   }
 
 }

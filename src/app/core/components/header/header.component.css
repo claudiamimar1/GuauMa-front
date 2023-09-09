@@ -40,8 +40,17 @@ ul {
     justify-content: center;
 }
 
+.ul-categoria {
+    list-style-type: none;
+    margin: 0;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #b1d1fb;
+    display: none;
+}
+
 li {
-    width: 10%;
+    width: 25%;
     display: list-item;
 }
 
@@ -85,9 +94,7 @@ li a:hover {
 
 .dropdown-item:hover, .dropdown-item:active, .dropdown-item:focus {
     background: #d9befb;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    border-radius: 15px;
 }
 
 .div-menu-active {
@@ -96,4 +103,13 @@ li a:hover {
 
 .div-categoria-active {
     display: contents;
+}
+
+.li-categoria {
+    float: left;
+    width: 50%;
+}
+
+.link-categoria {
+    width: fit-content;
 }

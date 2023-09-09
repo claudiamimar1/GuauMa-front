@@ -4,25 +4,25 @@
             <img class="logo-aplicacion" src="./../../../../assets/images/logo.png" />
             <h1 class="nombre-aplicacion">El Guardián de tu Mascota</h1>
         </div>
-        <button class="btn btn-menu" (click)="mostrarMenu()"><i class="fa fa-user"></i></button>
+        <button class="btn btn-menu" *ngIf="isLogin" (click)="mostrarMenu()"><i class="fa fa-user"></i></button>
         <div class="div-menu" [ngClass]="{ 'div-menu-active': menuActive }">
-            <a class="dropdown-item" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mi Perfil</a>
-            <a class="dropdown-item" [routerLink]="['mis-servicios']" (click)="mostrarMenu()">Mis servicios</a>
-            <a class="dropdown-item" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mis Publicaciones</a>
+            <a class="dropdown-item" *ngIf="isLogin" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mi Perfil</a>
+            <a class="dropdown-item" *ngIf="isLogin" [routerLink]="['mis-servicios']" (click)="mostrarMenu()">Mis servicios</a>
+            <a class="dropdown-item" *ngIf="isLogin" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mis Publicaciones</a>
             <a class="dropdown-item" (click)="logOut()">Cerrar Sesión</a>
         </div>
     </div>
-    <div>
+    <div *ngIf="isLogin">
         <ul>
             <li class="nav-item dropdown" (click)="mostrarCategoria()">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Categoría
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown" [ngClass]="{ 'div-categoria-active': categoriaActive }">
-                    <a class="dropdown-item" href="#">Accesorios</a>
-                    <a class="dropdown-item" href="#">Alimentos</a>
-                    <a class="dropdown-item" href="#">Entretenimiento</a>
+                <div class="dropdown-menu div-categorias" aria-labelledby="navbarDropdown" [ngClass]="{ 'div-categoria-active': categoriaActive }">
+                    <ul class="ul-categoria" [ngClass]="{ 'div-categoria-active': categoriaActive }">
+                        <li *ngFor="let categoria of categorias" class="li-categoria"><a class="dropdown-item link-categoria" href="#">{{categoria.nombre}}</a></li>
+                    </ul>
                 </div>
             </li>
             <li><a routerLinkActive="active" [routerLink]="['inicio-cuidado-animal']">Negocios</a></li>
