@@ -19,10 +19,9 @@
                 $<input type="number" id="precio" [value]="servicio.precio" [disabled] = "noEditar">
             </td>
             <td>
+                {{servicio.categoria}}
                 <select id="categoria" [value]="servicio.categoria" [disabled] = "noEditar">
-                    <option value="accesorios">Accesorios</option>
-                    <option value="spa">Spa</option>
-                    <option value="entretenimiento">Entretenimiento</option>
+                    <option [value]="servicio.categoria">{{servicio.categoria}}</option>                    
                 </select>
             </td>
             <td>

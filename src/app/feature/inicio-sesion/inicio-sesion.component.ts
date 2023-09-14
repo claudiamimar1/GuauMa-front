@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { UsuarioService } from 'src/app/shared/service/usuario.service';
+import * as CryptoJS from 'crypto-js'
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -32,6 +33,10 @@ export class InicioSesionComponent implements OnInit {
         this.usuarioService.consultarUsuarios(user.email).subscribe(response => {
           if (response.codigoHttp === 202) {
             this.router.navigate([enlace]);
+            let tipoIdetificacion = CryptoJS.AES.encrypt(response.data['tipoIdentificacion'].nombre, 'admin');
+            let numeroIdentificacion = CryptoJS.AES.encrypt(`${response.data['numeroIdentificacion']}`, 'admin');
+            localStorage.setItem('param1', tipoIdetificacion);
+            localStorage.setItem('param2', numeroIdentificacion);
           } else if (response.codigoHttp === 500) {
             this.router.navigate(['/registro-datos']);
           }

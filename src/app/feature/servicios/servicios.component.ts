@@ -6,6 +6,7 @@ import { Producto } from 'src/app/shared/model/producto';
 import { ProductoService } from 'src/app/shared/service/producto.service';
 import { UsuarioService } from 'src/app/shared/service/usuario.service';
 import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component';
+import * as CryptoJS from 'crypto-js'
 
 @Component({
   selector: 'app-servicios',
@@ -53,23 +54,36 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
     }, (error => {
       console.log(error);
     }));
+    
+    let tipoDocumentoDe = CryptoJS.AES.decrypt(localStorage.getItem('param1'), 'admin');
+    let numeroIdentificacionDe = CryptoJS.AES.decrypt(localStorage.getItem('param2'), 'admin');
 
-    this.datosServicios = [
-      {
-        id: 1,
-        nombre: 'Spa',
-        descripcion: 'Baño sencillo: Incluye corte de uñas',
-        precio: 50000,
-        categoria: 'spa'
-      },
-      {
-        id: 2,
-        nombre: 'Guarderia',
-        descripcion: 'Dia de guarderia: Se realizan diferentes actividades durante le dia',
-        precio: 60000,
-        categoria: 'entretenimiento'
-      }
-    ];
+    localStorage.setItem('param3', tipoDocumentoDe);
+    localStorage.setItem('param4', numeroIdentificacionDe);
+
+    this.productoService.consultarProductosUsuario(
+      this.hexToBase64(localStorage.getItem('param3')),
+      this.hexToBase64(localStorage.getItem('param4'))).subscribe(res => {
+        localStorage.setItem('param3', '');
+        localStorage.setItem('param4', '');
+        const usuario = res.data;
+        if (usuario.length > 0) {
+          usuario.forEach(us => {
+            const prod = {
+              id: us.idProducto,
+              nombre: us.nombre,
+              descripcion: us.descripcion,
+              precio: us.precio,
+              categoria: us.categoria.nombre
+            };
+            this.datosServicios.push(prod);
+          });
+          
+        }
+      }, (error => {
+        localStorage.setItem('param3', '');
+        localStorage.setItem('param4', '');
+      }));
   }
 
   public agregarNuevoServicio(value): void {
@@ -98,6 +112,14 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
     } else {
       alert('Ingrese todos los datos');
     }
+  }
+
+  public hexToBase64(str) {
+    var bString = "";
+    for (var i = 0; i < str.length; i += 2) {
+      bString += String.fromCharCode(parseInt(str.substr(i, 2), 16));
+    }
+    return bString;
   }
 
 }

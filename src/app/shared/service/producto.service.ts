@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Categoria } from 'src/app/shared/model/categoria';
 import { Producto } from 'src/app/shared/model/producto';
+import { Productos } from 'src/app/shared/model/productos';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -23,5 +24,17 @@ export class ProductoService {
 
   public guardarProducto(body: Producto): Observable<Producto> {
     return this.http.post<Producto>(`${this.urlGuardarProducto}`, body);
+  }
+
+  public consultarProductos(): Observable<Productos> {
+    return this.http.get<Productos>(`${this.urlGuardarProducto}`);
+  }
+
+  public consultarProductosCategoria(categoria): Observable<Productos> {
+    return this.http.get<Productos>(`${this.urlGuardarProducto}`);
+  }
+
+  public consultarProductosUsuario(tipoIdentificacion, numeroIdentificacion): Observable<Productos> {
+    return this.http.get<Productos>(`${this.urlGuardarProducto}?tipoIdentificacion=${tipoIdentificacion}&numeroIdentificacion=${numeroIdentificacion}`);
   }
 }
