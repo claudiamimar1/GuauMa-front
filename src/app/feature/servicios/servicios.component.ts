@@ -25,6 +25,9 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
   public estadoEditar = '';
   public categoriaEditar = '';
   public categorias = [];
+  public listaIdentificaciones = [];
+  public tipoIdentificacion = '';
+  public numeroIdentificacion = '';
 
   constructor(
     public productoService: ProductoService,
@@ -38,22 +41,33 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
     this.auth.isAuthenticated$.subscribe(isAuthenticated => {
       this.consultarUsuario(isAuthenticated, '/mis-servicios');
     });
+    this.cargarDatosGenerales();
+    this.cargarProductos();
     this.nuevoServicio = new FormGroup({
       nombre: new FormControl('', Validators.required),
       descripcion: new FormControl('', Validators.required),
       precio: new FormControl('', [Validators.pattern(/^\d+$/), Validators.required]),
       categoria: new FormControl('', Validators.required)
     });
-    this.cargarDatos();
   }
-
-  private cargarDatos(): void {
+  
+  private cargarDatosGenerales() {
     this.productoService.consultarCategoria().subscribe(response => {
       this.categorias = response.data;
       this.categorias.sort((a, b) => a.nombre > b.nombre ? 1 : -1);
     }, (error => {
       console.log(error);
     }));
+
+    this.usuarioService.consultarTipoIdentificacion().subscribe(response => {
+      this.listaIdentificaciones = response.data;
+      this.listaIdentificaciones.sort((a, b) => a.descripcion > b.descripcion ? 1 : -1);
+      }, (error => {
+        console.log(error);
+      }));
+  }
+
+  private cargarProductos(): void {
     
     let tipoDocumentoDe = CryptoJS.AES.decrypt(localStorage.getItem('param1'), 'admin');
     let numeroIdentificacionDe = CryptoJS.AES.decrypt(localStorage.getItem('param2'), 'admin');
@@ -61,9 +75,11 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
     localStorage.setItem('param3', tipoDocumentoDe);
     localStorage.setItem('param4', numeroIdentificacionDe);
 
-    this.productoService.consultarProductosUsuario(
-      this.hexToBase64(localStorage.getItem('param3')),
-      this.hexToBase64(localStorage.getItem('param4'))).subscribe(res => {
+    this.tipoIdentificacion = this.hexToBase64(localStorage.getItem('param3'));
+    this.numeroIdentificacion = this.hexToBase64(localStorage.getItem('param4'))
+
+    this.productoService.consultarProductosUsuario(this.tipoIdentificacion, this.numeroIdentificacion).subscribe(
+      res => {
         localStorage.setItem('param3', '');
         localStorage.setItem('param4', '');
         const usuario = res.data;
@@ -100,14 +116,16 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
         usuario: {
           tipoIdentificacion: {
             idTipoIdentificacion: 1,
-            nombre: 'CC',
-            descripcion: 'Cedula',
+            nombre: this.tipoIdentificacion,
+            descripcion: this.listaIdentificaciones.filter(e => e.nombre === this.tipoIdentificacion)[0].descripcion,
           },
-          numeroIdentificacion: 1094957383,
+          numeroIdentificacion: Number(this.numeroIdentificacion),
         }
       };
       this.productoService.guardarProducto(body).subscribe(e => {
         alert('Se registro correctamente el producto');
+        this.agregarNuevoServicio(false);
+        this.cargarProductos();
       });
     } else {
       alert('Ingrese todos los datos');
