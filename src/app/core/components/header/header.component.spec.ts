@@ -30,27 +30,27 @@ fdescribe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should mostrarMenu', async() => {
+  it('should mostrarMenu', async () => {
     spyOn(component, 'mostrarMenu');
-    let button = fixture.debugElement.nativeElement.querySelector('button');
+    const button = fixture.debugElement.nativeElement.querySelector('button');
     button.click();
     fixture.whenStable().then(() => {
       expect(component.mostrarMenu).toHaveBeenCalled();
     });
   });
 
-  it('should mostrarCategoria', async() => {
+  it('should mostrarCategoria', async () => {
     spyOn(component, 'mostrarCategoria');
-    let button = fixture.debugElement.nativeElement.querySelector('li');
+    const button = fixture.debugElement.nativeElement.querySelector('li');
     button.click();
     fixture.whenStable().then(() => {
       expect(component.mostrarCategoria).toHaveBeenCalled();
     });
   });
 
-  it('should logOut', async() => {
+  it('should logOut', async () => {
     spyOn(component, 'logOut');
-    let button = fixture.debugElement.nativeElement.querySelector('a');
+    const button = fixture.debugElement.nativeElement.querySelector('a');
     button.click();
     fixture.whenStable().then(() => {
       expect(component.logOut).toHaveBeenCalled();

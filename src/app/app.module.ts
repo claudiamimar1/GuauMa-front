@@ -14,6 +14,7 @@ import { InicioSesionComponent } from './feature/inicio-sesion/inicio-sesion.com
 import { AuthModule } from '@auth0/auth0-angular';
 import { RegistroDatosPerfilComponent } from './feature/registro-datos-perfil/registro-datos-perfil.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductosGeneralesComponent } from './feature/productos-generales/productos-generales.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     PerfilComponent,
     ServiciosComponent,
     InicioSesionComponent,
-    RegistroDatosPerfilComponent
+    RegistroDatosPerfilComponent,
+    ProductosGeneralesComponent
   ],
   imports: [
     BrowserModule,

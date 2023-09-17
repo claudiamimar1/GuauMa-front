@@ -7,14 +7,16 @@
         <button class="btn btn-menu" *ngIf="isLogin" (click)="mostrarMenu()"><i class="fa fa-user"></i></button>
         <div class="div-menu" [ngClass]="{ 'div-menu-active': menuActive }">
             <a class="dropdown-item" *ngIf="isLogin" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mi Perfil</a>
-            <a class="dropdown-item" *ngIf="isLogin" [routerLink]="['mis-servicios']" (click)="mostrarMenu()">Mis servicios</a>
-            <a class="dropdown-item" *ngIf="isLogin" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mis Publicaciones</a>
+            <a class="dropdown-item" *ngIf="isLogin" [routerLink]="['mis-servicios']" (click)="mostrarMenu()">Mis
+                servicios</a>
+            <a class="dropdown-item" *ngIf="isLogin" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mis
+                Publicaciones</a>
             <a class="dropdown-item" (click)="logOut()">Cerrar Sesión</a>
         </div>
     </div>
     <div *ngIf="isLogin">
         <ul>
-            <li class="nav-item dropdown" (click)="mostrarCategoria()">
+            <!-- <li class="nav-item dropdown" (click)="mostrarCategoria()">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Categoría
@@ -24,7 +26,8 @@
                         <li *ngFor="let categoria of categorias" class="li-categoria"><a class="dropdown-item link-categoria" href="#">{{categoria.nombre}}</a></li>
                     </ul>
                 </div>
-            </li>
+            </li> -->
+            <li><a routerLinkActive="active" [routerLink]="['productos']">Productos</a></li>
             <li><a routerLinkActive="active" [routerLink]="['inicio-cuidado-animal']">Negocios</a></li>
             <li><a routerLinkActive="active" [routerLink]="['blog-cuidado-animal']">Blog</a></li>
         </ul>
