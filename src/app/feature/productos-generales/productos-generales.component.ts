@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
+import { PopUpComponent } from 'src/app/core/components/pop-up/pop-up.component';
 import { ProductoService } from 'src/app/shared/service/producto.service';
 
 @Component({
@@ -8,15 +10,18 @@ import { ProductoService } from 'src/app/shared/service/producto.service';
   templateUrl: './productos-generales.component.html',
   styleUrls: ['./productos-generales.component.css']
 })
-export class ProductosGeneralesComponent implements OnInit {
+export class ProductosGeneralesComponent extends PopUpComponent implements OnInit {
 
   public productos = [];
 
   constructor(
     public auth: AuthService,
     public router: Router,
-    public productoService: ProductoService
-  ) { }
+    public productoService: ProductoService,
+    public dialogRef: MatDialog
+  ) {
+    super(dialogRef, productoService)
+   }
 
   ngOnInit(): void {
     this.cargarProductos();
@@ -24,7 +29,6 @@ export class ProductosGeneralesComponent implements OnInit {
 
   public cargarProductos() {
     this.productoService.consultarProductos().subscribe(response => {
-      debugger;
       this.productos = response.data;
     });
   }

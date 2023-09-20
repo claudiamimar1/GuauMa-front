@@ -15,6 +15,13 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { RegistroDatosPerfilComponent } from './feature/registro-datos-perfil/registro-datos-perfil.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductosGeneralesComponent } from './feature/productos-generales/productos-generales.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PopUpComponent } from './core/components/pop-up/pop-up.component'
+import {MatButtonModule} from '@angular/material/button';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -26,7 +33,8 @@ import { ProductosGeneralesComponent } from './feature/productos-generales/produ
     ServiciosComponent,
     InicioSesionComponent,
     RegistroDatosPerfilComponent,
-    ProductosGeneralesComponent
+    ProductosGeneralesComponent,
+    PopUpComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +45,13 @@ import { ProductosGeneralesComponent } from './feature/productos-generales/produ
       domain: 'dev-bofx3gh2nrkzclxr.us.auth0.com',
       clientId: 'ZHmm31MIaqMmZQMt81fy3gs13P5eT8Ib'
     }),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

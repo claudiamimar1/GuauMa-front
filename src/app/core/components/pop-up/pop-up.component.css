@@ -1,0 +1,30 @@
+.div-resenia {
+    width: 300px;
+    text-align: center;
+}
+
+label {
+    display: block;
+}
+
+input,
+select,
+textarea {
+    width: 300px;
+    border-radius: 10px;
+}
+
+.btn {
+    margin: 5px;
+    width: 50px;
+}
+
+.btn-aceptar {
+    background: #4db955;
+    color: #fff;
+}
+
+.btn-cancelar {
+    background: #b94d4d;
+    color: #fff;
+}
