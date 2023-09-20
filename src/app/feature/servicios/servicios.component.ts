@@ -13,7 +13,7 @@ import * as CryptoJS from 'crypto-js'
   templateUrl: './servicios.component.html',
   styleUrls: ['./servicios.component.css']
 })
-export class ServiciosComponent extends InicioSesionComponent implements OnInit {
+export class ServiciosComponent /* extends InicioSesionComponent */ implements OnInit {
 
   public datosServicios = [];
   public noEditar = true;
@@ -31,16 +31,16 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
 
   constructor(
     public productoService: ProductoService,
-    public auth: AuthService,
+    //public auth: AuthService,
     public router: Router,
     public usuarioService: UsuarioService
   ) {
-    super(auth, router, usuarioService);
+    //super(auth, router, usuarioService);
   }
   ngOnInit(): void {
-    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
+    /* this.auth.isAuthenticated$.subscribe(isAuthenticated => {
       this.consultarUsuario(isAuthenticated, '/mis-servicios');
-    });
+    }); */
     this.cargarDatosGenerales();
     this.cargarProductos();
     this.nuevoServicio = new FormGroup({

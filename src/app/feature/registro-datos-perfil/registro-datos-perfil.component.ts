@@ -10,7 +10,7 @@ import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component'
   templateUrl: './registro-datos-perfil.component.html',
   styleUrls: ['./registro-datos-perfil.component.css']
 })
-export class RegistroDatosPerfilComponent extends InicioSesionComponent implements OnInit {
+export class RegistroDatosPerfilComponent /* extends InicioSesionComponent */ implements OnInit {
 
   public datosUsuario: FormGroup;
   public email = '';
@@ -21,19 +21,19 @@ export class RegistroDatosPerfilComponent extends InicioSesionComponent implemen
   public municipios: Array<any> = [];
 
   constructor(
-    public auth: AuthService,
+    //public auth: AuthService,
     public router: Router,
     public usuarioService: UsuarioService
   ) {
-    super(auth, router, usuarioService);
+    //super(auth, router, usuarioService);
   }
 
   ngOnInit(): void {
-    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
+    /* this.auth.isAuthenticated$.subscribe(isAuthenticated => {
       this.consultarUsuario(isAuthenticated, '/registro-datos');
-    });
+    }); */
 
-    this.auth.user$.subscribe(user => this.email = user.email);
+    //this.auth.user$.subscribe(user => this.email = user.email);
     this.cargarDatos();
     setTimeout(() => {
       this.datosUsuario = new FormGroup({

@@ -9,22 +9,22 @@ import { UsuarioService } from 'src/app/shared/service/usuario.service';
   templateUrl: './pagina-blog.component.html',
   styleUrls: ['./pagina-blog.component.css']
 })
-export class PaginaBlogComponent extends InicioSesionComponent implements OnInit {
+export class PaginaBlogComponent /* extends InicioSesionComponent */ implements OnInit {
 
   public datosBlog = [];
 
   constructor(
-    public auth: AuthService,
+    //public auth: AuthService,
     public router: Router,
     public usuarioService: UsuarioService
   ) {
-    super(auth, router, usuarioService);
+    //super(auth, router, usuarioService);
   }
 
   ngOnInit(): void {
-    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
-      this.consultarUsuario(isAuthenticated, '/blog-cuidado-animal');
-    });
+    /* this.auth.isAuthenticated$.subscribe(isAuthenticated => {
+      //this.consultarUsuario(isAuthenticated, '/blog-cuidado-animal');
+    }); */
     this.cargarDatos();
   }
 

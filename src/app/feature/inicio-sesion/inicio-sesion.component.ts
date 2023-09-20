@@ -12,22 +12,22 @@ import * as CryptoJS from 'crypto-js'
 export class InicioSesionComponent implements OnInit {
 
   constructor(
-    public auth: AuthService,
+    //public auth: AuthService,
     public router: Router,
     public usuarioService: UsuarioService
   ) { }
 
   ngOnInit(): void {
-    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
+    /* this.auth.isAuthenticated$.subscribe(isAuthenticated => {
       this.consultarUsuario(isAuthenticated, '/inicio-cuidado-animal');
-    });
+    }); */
   }
 
   public iniciarSesion(): void {
-    this.auth.loginWithRedirect();
+    //this.auth.loginWithRedirect();
   }
 
-  public consultarUsuario(isAuthenticated, enlace): void {
+ /*  public consultarUsuario(isAuthenticated, enlace): void {
     if (isAuthenticated) {
       this.auth.user$.subscribe(user => {
         this.usuarioService.consultarUsuarios(user.email).subscribe(response => {
@@ -47,5 +47,5 @@ export class InicioSesionComponent implements OnInit {
     } else {
       this.router.navigate(['/']);
     }
-  }
+  } */
 }
