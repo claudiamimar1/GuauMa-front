@@ -3,8 +3,22 @@
     text-align: center;
 }
 
+.div-comments {
+    max-height: 200px;
+}
+
 label {
     display: block;
+}
+
+.container-resenia {
+    border-bottom: 5px solid #b1d1fb;
+    padding-top: 10px;
+}
+
+.btn-ver-mas{
+    background: #757ed3;
+    color: #fff;
 }
 
 input,

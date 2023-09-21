@@ -14,7 +14,7 @@ export class PopUpComponent implements OnInit {
 
   public resenia: FormGroup;
   public idProd: number;
-  public verResenia: boolean;
+  public verResenia: string;
 
   constructor(
     public dialogRef: MatDialog,
@@ -23,17 +23,17 @@ export class PopUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.idProd = Number(localStorage.getItem('idProducto'));
-    this.verResenia = Boolean(localStorage.getItem('verResenia'));
+    this.verResenia = localStorage.getItem('verResenia');
     this.resenia = new FormGroup({
       puntaje: new FormControl('', Validators.required),
       comentario: new FormControl('', Validators.required)
     });
   }
 
-  openDialog(idProducto?: number, verResenia?: boolean): void {
+  openDialog(idProducto?: number, resenia?: boolean): void {
     this.dialogRef.open(PopUpComponent);
     localStorage.setItem('idProducto', String(idProducto));
-    localStorage.setItem('verResenia', String(verResenia));
+    localStorage.setItem('verResenia', String(resenia));
   }
 
   guardarResenia(): void {

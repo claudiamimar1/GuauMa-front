@@ -8,7 +8,7 @@
                 <span><b>Contacto:</b> {{producto.usuario.celular}}</span><br>
                 <span><b>Dirección:</b> {{producto.usuario.direccion.descripcion}}</span><br>
                 <span *ngIf="producto.resenias !== null"><b>Calificación:</b> {{producto.resenias}}</span><br>
-                <a class="btn btn-primary">Ver reseñas</a>
+                <a class="btn btn-primary" (click)="openDialog(producto.idProducto, true)">Ver reseñas</a>
                 <a class="btn btn-primary" (click)="openDialog(producto.idProducto, false)">Calificar</a>
             </div>
         </div>
