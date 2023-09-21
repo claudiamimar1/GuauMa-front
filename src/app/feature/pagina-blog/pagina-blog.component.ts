@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component';
-import { AuthService } from '@auth0/auth0-angular';
+/* import { AuthService } from '@auth0/auth0-angular'; */
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/shared/service/usuario.service';
 

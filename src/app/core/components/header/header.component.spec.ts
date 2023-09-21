@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
-import { AuthService } from '@auth0/auth0-angular';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
@@ -8,15 +7,15 @@ import { By } from '@angular/platform-browser';
 
 fdescribe('HeaderComponent', () => {
   let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
-  let mockAuthService: jasmine.SpyObj<AuthService>;
+  let fixture: ComponentFixture<HeaderComponent>;/* 
+  let mockAuthService: jasmine.SpyObj<AuthService>; */
 
   beforeEach((async () => {
-    mockAuthService = jasmine.createSpyObj<AuthService>('AuthService', ['logout']);
+    /* mockAuthService = jasmine.createSpyObj<AuthService>('AuthService', ['logout']); */
     await TestBed.configureTestingModule({
       declarations: [HeaderComponent],
       imports: [RouterTestingModule],
-      providers: [{provide: AuthService, useValue: mockAuthService }]
+      /* providers: [{provide: AuthService, useValue: mockAuthService }] */
     }).compileComponents();
   })
   );

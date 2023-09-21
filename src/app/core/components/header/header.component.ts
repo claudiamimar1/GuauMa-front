@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
+/* import { AuthService } from '@auth0/auth0-angular'; */
 import { ProductoService } from 'src/app/shared/service/producto.service';
 
 @Component({
@@ -16,15 +16,15 @@ export class HeaderComponent implements OnInit {
   public categorias = [];
 
   constructor(
-    public auth: AuthService,
+   /*  public auth: AuthService, */
     public router: Router,
     public productoService: ProductoService
   ) { }
 
   ngOnInit(): void {
-    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
+    /* this.auth.isAuthenticated$.subscribe(isAuthenticated => {
       this.isLogin = isAuthenticated && this.router.url !== '/registro-datos';
-    });
+    }); */
     this.cargarCategorias();
   }
 
@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut(): void {
-    this.auth.logout();
+    /* this.auth.logout(); */
   }
 
   cargarCategorias(): void {

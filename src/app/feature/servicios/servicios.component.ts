@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
+/* import { AuthService } from '@auth0/auth0-angular'; */
 import { Producto } from 'src/app/shared/model/producto';
 import { ProductoService } from 'src/app/shared/service/producto.service';
 import { UsuarioService } from 'src/app/shared/service/usuario.service';

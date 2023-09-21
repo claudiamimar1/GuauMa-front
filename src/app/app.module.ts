@@ -11,7 +11,6 @@ import { PerfilComponent } from './feature/perfil/perfil.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ServiciosComponent } from './feature/servicios/servicios.component';
 import { InicioSesionComponent } from './feature/inicio-sesion/inicio-sesion.component';
-import { AuthModule } from '@auth0/auth0-angular';
 import { RegistroDatosPerfilComponent } from './feature/registro-datos-perfil/registro-datos-perfil.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductosGeneralesComponent } from './feature/productos-generales/productos-generales.component';
@@ -40,11 +39,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,/* 
     AuthModule.forRoot({
       domain: 'dev-bofx3gh2nrkzclxr.us.auth0.com',
       clientId: 'ZHmm31MIaqMmZQMt81fy3gs13P5eT8Ib'
-    }),
+    }), */
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
+/* import { AuthService } from '@auth0/auth0-angular'; */
 import { PopUpComponent } from 'src/app/core/components/pop-up/pop-up.component';
 import { ProductoService } from 'src/app/shared/service/producto.service';
 
@@ -15,7 +15,7 @@ export class ProductosGeneralesComponent extends PopUpComponent implements OnIni
   public productos = [];
 
   constructor(
-    public auth: AuthService,
+    /* public auth: AuthService, */
     public router: Router,
     public productoService: ProductoService,
     public dialogRef: MatDialog
