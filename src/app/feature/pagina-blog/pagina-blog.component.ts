@@ -3,6 +3,7 @@ import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component'
 import { AuthService } from '@auth0/auth0-angular';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/shared/service/usuario.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-pagina-blog',
@@ -12,6 +13,7 @@ import { UsuarioService } from 'src/app/shared/service/usuario.service';
 export class PaginaBlogComponent extends InicioSesionComponent implements OnInit {
 
   public datosBlog = [];
+  public publicacion: FormGroup;
 
   constructor(
     public auth: AuthService,
@@ -22,6 +24,12 @@ export class PaginaBlogComponent extends InicioSesionComponent implements OnInit
   }
 
   ngOnInit(): void {
+    this.publicacion = new FormGroup({
+      titulo: new FormControl('', Validators.required),
+      fechaPublicacion: new FormControl(new Date, Validators.required),
+      descripcion: new FormControl('', Validators.required),
+      usuario: new FormControl('', Validators.required)
+    });
     this.auth.isAuthenticated$.subscribe(isAuthenticated => {
       this.consultarUsuario(isAuthenticated, '/blog-cuidado-animal');
     });
@@ -56,6 +64,13 @@ export class PaginaBlogComponent extends InicioSesionComponent implements OnInit
         imagen: './../../../assets/images/logo.png'
       }
     ];
+  }
+
+  public guardarPublicacion() {
+    debugger;
+    if (this.publicacion.valid) {
+
+    }
   }
 
 }

@@ -7,6 +7,7 @@ import { Pais } from 'src/app/shared/model/pais';
 import { Departamento } from 'src/app/shared/model/departamento';
 import { Municipio } from 'src/app/shared/model/municipio';
 import { Usuario } from 'src/app/shared/model/usuario';
+import { Usuarios } from 'src/app/shared/model/usuarios';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -52,5 +53,9 @@ export class UsuarioService {
 
   public consultarProveedores(rol): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.urlConsultarProveedores}?nombre_rol=${rol}`);
+  }
+
+  public crearRegistro(body: Usuarios): Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.urlConsultarUsuarios}`, body);
   }
 }

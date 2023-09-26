@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
 import { UsuarioService } from 'src/app/shared/service/usuario.service';
 import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component';
+import { Usuarios } from 'src/app/shared/model/usuarios';
 
 @Component({
   selector: 'app-registro-datos-perfil',
   templateUrl: './registro-datos-perfil.component.html',
   styleUrls: ['./registro-datos-perfil.component.css']
 })
-export class RegistroDatosPerfilComponent extends InicioSesionComponent implements OnInit {
+export class RegistroDatosPerfilComponent implements OnInit {
 
   public datosUsuario: FormGroup;
-  public email = '';
   public roles: Array<any> = [];
   public tipoIdentificaciones: Array<any> = [];
   public paises: Array<any> = [];
@@ -21,34 +20,25 @@ export class RegistroDatosPerfilComponent extends InicioSesionComponent implemen
   public municipios: Array<any> = [];
 
   constructor(
-    public auth: AuthService,
     public router: Router,
     public usuarioService: UsuarioService
-  ) {
-    super(auth, router, usuarioService);
-  }
+  ) { }
 
   ngOnInit(): void {
-    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
-      this.consultarUsuario(isAuthenticated, '/registro-datos');
-    });
-
-    this.auth.user$.subscribe(user => this.email = user.email);
     this.cargarDatos();
-    setTimeout(() => {
-      this.datosUsuario = new FormGroup({
-        razonSocial: new FormControl('', Validators.required),
-        tipoDocumento: new FormControl('', Validators.required),
-        numeroDocumento: new FormControl('', [Validators.pattern(/^\d+$/), Validators.required]),
-        correoElectronico: new FormControl(this.email),
-        rol: new FormControl('', Validators.required),
-        numeroContacto: new FormControl('', [Validators.pattern(/^\d+$/), Validators.required]),
-        pais: new FormControl('', Validators.required),
-        departamento: new FormControl('', Validators.required),
-        ciudad: new FormControl('', Validators.required),
-        direccion: new FormControl('', Validators.required)
-      });
-    }, 1500);
+    this.datosUsuario = new FormGroup({
+      razonSocial: new FormControl('', Validators.required),
+      tipoDocumento: new FormControl('', Validators.required),
+      numeroDocumento: new FormControl('', [Validators.pattern(/^\d+$/), Validators.required]),
+      correoElectronico: new FormControl('', [Validators.email, Validators.required]),
+      contrasenia: new FormControl('', Validators.required),
+      rol: new FormControl('', Validators.required),
+      celular: new FormControl('', [Validators.pattern(/^\d+$/), Validators.required]),
+      pais: new FormControl('', Validators.required),
+      departamento: new FormControl('', Validators.required),
+      ciudad: new FormControl('', Validators.required),
+      direccion: new FormControl('', Validators.required)
+    });
   }
 
   public cargarDatos(): void {
@@ -105,9 +95,35 @@ export class RegistroDatosPerfilComponent extends InicioSesionComponent implemen
 
   public registrarUsuario(): void {
     if (this.datosUsuario.valid) {
-      console.log(this.datosUsuario.valid);
+      this.usuarioService.consultarUsuarios(this.datosUsuario.value.correoElectronico).subscribe(response => {
+        alert('El usuario ya se encuentra en nuestra base de datos');
+      }, (error => {
+        const body: Usuarios = {
+          tipoIdentificacion: this.datosUsuario.value.tipoDocumento,
+          numeroIdentificacion: this.datosUsuario.value.numeroDocumento,
+          nombreRazonSocial: this.datosUsuario.value.razonSocial,
+          correo: this.datosUsuario.value.correoElectronico,
+          contrasenia: this.datosUsuario.value.contrasenia,
+          celular: this.datosUsuario.value.celular,
+          direccion: {
+            descripcion: this.datosUsuario.value.direccion,
+            codigoMunicipio: this.datosUsuario.value.ciudad
+          },
+          rol: this.datosUsuario.value.rol
+        }
+        this.usuarioService.crearRegistro(body).subscribe(response => {
+          alert('Se creo el usuario correctamente');
+          this.regresar();
+        }, (error => {
+
+        }));
+      }));
     } else {
-      console.log(this.datosUsuario.valid);
+      alert('Ingresar la información solicitada');
     }
+  }
+
+  public regresar() {
+    location.reload();
   }
 }

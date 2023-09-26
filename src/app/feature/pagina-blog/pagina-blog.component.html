@@ -1,7 +1,18 @@
 <div class="div-principal-blog">
-    <div class="card text-center div-blog" *ngFor="let blog of datosBlog">
+  <div class="card text-center div-blog" [formGroup]="publicacion">
+    <h5>Nueva publicación</h5>
+    <div class="card-body">
+      <input type="text" class="card-title" placeholder="Titulo" formControlName="titulo"><br><br>
+      <textarea placeholder="Descripción" formControlName="descripcion"></textarea>
+    </div>
+    <a class="btn btn-primary" (click)="guardarPublicacion()">Publicar</a>
+  </div>
+</div>
+
+<div class="div-principal-blog">
+  <div class="card text-center div-blog" *ngFor="let blog of datosBlog">
     <div class="card-header">
-        {{blog.categoria}}
+      {{blog.categoria}}
     </div>
     <img src="{{blog.imagen}}" class="card-img-top">
     <div class="card-body">

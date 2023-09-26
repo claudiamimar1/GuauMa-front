@@ -34,3 +34,12 @@ input, select, textarea {
     margin-bottom: 10px;
     background-color: #b1d1fb;
 }
+
+.btn-regresar {
+    top: 0px;
+    position: absolute;
+    left: 0px;
+    cursor: pointer;
+    background-color: #b1d1fb;
+}
+

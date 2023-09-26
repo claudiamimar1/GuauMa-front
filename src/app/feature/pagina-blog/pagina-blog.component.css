@@ -66,3 +66,8 @@ body {
         margin-bottom: 20px;
     }
 }
+
+input, select, textarea {
+    width: 35%;
+    border-radius: 10px;
+}

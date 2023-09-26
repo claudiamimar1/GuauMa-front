@@ -22,6 +22,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { PrincipalComponent } from './feature/principal/principal.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     InicioSesionComponent,
     RegistroDatosPerfilComponent,
     ProductosGeneralesComponent,
-    PopUpComponent
+    PopUpComponent,
+    PrincipalComponent
   ],
   imports: [
     BrowserModule,

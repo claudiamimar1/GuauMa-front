@@ -1,11 +1,14 @@
 <div class="div-registro-datos">
+    <button class="btn btn-regresar" (click)="regresar()">
+        <i class="fa fa-arrow-left"></i>
+    </button>
     <img class="img-perfil" src="./../../../assets/images/logo.png" />
     <h1>Registro</h1>
     <form [formGroup]="datosUsuario" *ngIf="datosUsuario">
         <label for="rol">Rol</label><br>
         <select name="rol" id="rol" value="" formControlName="rol">
             <option value="">Seleccione una opción</option>
-            <option [value]="rol.idRol" *ngFor="let rol of roles">{{rol.nombre}}</option>
+            <option [value]="rol.nombre" *ngFor="let rol of roles">{{rol.nombre}}</option>
         </select><br><br>
 
         <label for="razonSocial">Nombre Completo</label><br>
@@ -18,11 +21,21 @@
         </select><br><br>
 
         <label for="numeroDocumento">Número Documento</label><br>
-        <input type="number" id="numeroDocumento" name="numeroDocumento" value="" formControlName="numeroDocumento"><br><br>
+        <input type="number" id="numeroDocumento" name="numeroDocumento" value=""
+            formControlName="numeroDocumento"><br><br>
+
+        <label for="email">Correo Electrónico</label><br>
+        <input type="email" name="email" id="email" name="email" value="" formControlName="correoElectronico">
+        <br><br>
+
+        <label for="contrasena">Contraseña</label><br>
+        <input type="password" name="contrasena" id="contrasena" name="contrasena" value=""
+            formControlName="contrasenia">
+        <br><br>
 
         <label for="numeroContacto">Número de Contacto</label><br>
         <input type="number" id="numeroContacto" name="numeroContacto" value=""
-            formControlName="numeroContacto"><br><br>
+            formControlName="celular"><br><br>
 
         <label for="pais">Pais</label><br>
         <select name="pais" id="pais" [value]="" formControlName="pais" (change)="cargarDepartamentos($event)">
@@ -31,22 +44,24 @@
         </select><br><br>
 
         <label for="departamento">Departamento</label><br>
-        <select name="departamento" id="departamento" value="" formControlName="departamento" (change)="cargarMunicipios($event)">
+        <select name="departamento" id="departamento" value="" formControlName="departamento"
+            (change)="cargarMunicipios($event)">
             <option value="">Seleccione una opción</option>
-            <option [value]="departamento.codigo" *ngFor="let departamento of departamentos">{{departamento.nombre}}</option>
+            <option [value]="departamento.codigo" *ngFor="let departamento of departamentos">{{departamento.nombre}}
+            </option>
         </select><br><br>
 
         <label for="ciudad">Ciudad</label><br>
         <select name="ciudad" id="ciudad" value="" formControlName="ciudad">
             <option value="">Seleccione una opción</option>
-            <option [value]="ciudad.idMunicipio" *ngFor="let ciudad of municipios">{{ciudad.nombre}}</option>
+            <option [value]="ciudad.codigo" *ngFor="let ciudad of municipios">{{ciudad.nombre}}</option>
         </select><br><br>
 
         <label for="direccion">Dirección</label><br>
         <textarea id="direccion" name="direccion" value="" formControlName="direccion"></textarea><br><br>
 
         <button class="btn btn-agregar" (click)="registrarUsuario()" [disabled]="!datosUsuario.valid">
-            <i class="fa fa-save"></i> 
+            <i class="fa fa-save"></i>
             Registrar Datos
         </button>
 
