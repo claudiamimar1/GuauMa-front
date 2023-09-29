@@ -4,9 +4,9 @@
         <h4>A una pagina donde podras encontrar todo para tu mascota, una pagina creada con el fin de
             ayudarnos a encontrar los mejores servicios.</h4>
     </div>
-    <button class="btn btn-inicio-sesion" (click)="iniciarSesion()">Iniciar Sesion</button>
-    <button class="btn btn-inicio-sesion" (click)="registro()">Crear cuenta</button>
+    <button class="btn btn-inicio-sesion" (click)="iniciarSesion()" *ngIf="!isLogin()">Iniciar Sesion</button>
+    <button class="btn btn-inicio-sesion" (click)="registro()" *ngIf="!isLogin()">Crear cuenta</button>
 </div>
 
-<app-registro-datos-perfil *ngIf="isRegistro"></app-registro-datos-perfil>
-<app-inicio-sesion *ngIf="isInicioSesion"></app-inicio-sesion>
+<app-registro-datos-perfil *ngIf="isRegistro && !isLogin()"></app-registro-datos-perfil>
+<app-inicio-sesion *ngIf="isInicioSesion && !isLogin()"></app-inicio-sesion>

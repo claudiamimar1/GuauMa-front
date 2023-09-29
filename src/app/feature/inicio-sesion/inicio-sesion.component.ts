@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
+import { Usuario } from 'src/app/shared/model/usuario';
 import { UsuarioService } from 'src/app/shared/service/usuario.service';
-import * as CryptoJS from 'crypto-js'
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -11,41 +11,39 @@ import * as CryptoJS from 'crypto-js'
 })
 export class InicioSesionComponent implements OnInit {
 
+  public inicioSesion: FormGroup;
+  public inicioCorrecto = false;
+  public datosUsuario;
+
   constructor(
-    public auth: AuthService,
     public router: Router,
     public usuarioService: UsuarioService
   ) { }
 
   ngOnInit(): void {
-    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
-      this.consultarUsuario(isAuthenticated, '/inicio-cuidado-animal');
+    this.inicioSesion = new FormGroup({
+      correoElectronico: new FormControl('', Validators.required),
+      contrasenia: new FormControl('', Validators.required)
     });
   }
 
-  public iniciarSesion(): void {
-    this.auth.loginWithRedirect();
-  }
-
-  public consultarUsuario(isAuthenticated, enlace): void {
-    if (isAuthenticated) {
-      this.auth.user$.subscribe(user => {
-        this.usuarioService.consultarUsuarios(user.email).subscribe(response => {
-          if (response.codigoHttp === 202) {
-            this.router.navigate([enlace]);
-            let tipoIdetificacion = CryptoJS.AES.encrypt(response.data['tipoIdentificacion'].nombre, 'admin');
-            let numeroIdentificacion = CryptoJS.AES.encrypt(`${response.data['numeroIdentificacion']}`, 'admin');
-            localStorage.setItem('param1', tipoIdetificacion);
-            localStorage.setItem('param2', numeroIdentificacion);
-          } else if (response.codigoHttp === 500) {
-            this.router.navigate(['/registro-datos']);
-          }
-        }, (error => {
-          this.router.navigate(['/registro-datos']);
-        }));
+  public iniciarSesion() {
+    if(this.inicioSesion.valid) {
+      this.usuarioService.iniciarSesion(this.inicioSesion.value.correoElectronico, this.inicioSesion.value.contrasenia).subscribe(response => {
+        if(response.mensajes[0] === 'Consulta exitosa') {
+          this.datosUsuario = response.data;
+          localStorage.setItem('isLogin', 'true');
+          this.router.navigate(['/inicio-cuidado-animal']);
+        } else {
+          alert(response.mensajes[0]);
+        }
       });
     } else {
-      this.router.navigate(['/']);
+      alert('Complete todos los datos');
     }
+  }
+  
+  public regresar() {
+    location.reload();
   }
 }

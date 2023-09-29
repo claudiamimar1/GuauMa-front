@@ -1,9 +1,31 @@
-.div-inicio-sesion {
+.div-principal {
     width: 50%;
     position: absolute;
     left: 25%;
     text-align-last: center;
     margin-top: 40px;
+}
+
+h1,
+form {
+    margin-top: 10px;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+input, select, textarea {
+    width: 35%;
+    border-radius: 10px;
+}
+
+.btn-regresar {
+    top: 0px;
+    position: absolute;
+    left: 0px;
+    cursor: pointer;
+    background-color: #b1d1fb;
 }
 
 .btn-inicio-sesion {

@@ -4,36 +4,37 @@ import { AuthService } from '@auth0/auth0-angular';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/shared/service/usuario.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PrincipalComponent } from '../principal/principal.component';
 
 @Component({
   selector: 'app-pagina-blog',
   templateUrl: './pagina-blog.component.html',
   styleUrls: ['./pagina-blog.component.css']
 })
-export class PaginaBlogComponent extends InicioSesionComponent implements OnInit {
+export class PaginaBlogComponent extends PrincipalComponent implements OnInit {
 
   public datosBlog = [];
   public publicacion: FormGroup;
 
   constructor(
-    public auth: AuthService,
     public router: Router,
     public usuarioService: UsuarioService
   ) {
-    super(auth, router, usuarioService);
+    super();
   }
 
   ngOnInit(): void {
-    this.publicacion = new FormGroup({
-      titulo: new FormControl('', Validators.required),
-      fechaPublicacion: new FormControl(new Date, Validators.required),
-      descripcion: new FormControl('', Validators.required),
-      usuario: new FormControl('', Validators.required)
-    });
-    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
-      this.consultarUsuario(isAuthenticated, '/blog-cuidado-animal');
-    });
-    this.cargarDatos();
+    if (this.isLogin()) {
+      this.publicacion = new FormGroup({
+        titulo: new FormControl('', Validators.required),
+        fechaPublicacion: new FormControl(new Date, Validators.required),
+        descripcion: new FormControl('', Validators.required),
+        usuario: new FormControl('', Validators.required)
+      });
+      this.cargarDatos();
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 
   private cargarDatos(): void {
@@ -72,5 +73,7 @@ export class PaginaBlogComponent extends InicioSesionComponent implements OnInit
 
     }
   }
+
+
 
 }

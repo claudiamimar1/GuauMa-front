@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
+import { PrincipalComponent } from 'src/app/feature/principal/principal.component';
 import { ProductoService } from 'src/app/shared/service/producto.service';
 
 @Component({
@@ -8,23 +9,20 @@ import { ProductoService } from 'src/app/shared/service/producto.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent extends PrincipalComponent implements OnInit {
 
   public menuActive = false;
   public categoriaActive = false;
-  public isLogin = false;
   public categorias = [];
 
   constructor(
-    public auth: AuthService,
     public router: Router,
     public productoService: ProductoService
-  ) { }
+  ) { 
+    super();
+  }
 
   ngOnInit(): void {
-    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
-      this.isLogin = isAuthenticated && this.router.url !== '/registro-datos';
-    });
     this.cargarCategorias();
   }
 
@@ -37,7 +35,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut(): void {
-    this.auth.logout();
+    localStorage.setItem('isLogin', 'false');
+    this.isLogin();
+    this.router.navigate(['/']);
   }
 
   cargarCategorias(): void {
@@ -48,5 +48,4 @@ export class HeaderComponent implements OnInit {
       console.log(error);
     }));
   }
-
 }

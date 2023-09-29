@@ -9,12 +9,14 @@ export class PrincipalComponent implements OnInit {
 
   public isInicioSesion = false;
   public isRegistro = false;
-
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  isLogin(): boolean{
+    return localStorage.getItem('isLogin') === 'true'? true : false;
+  }
   
   public iniciarSesion(): void {
     this.isInicioSesion = true;

@@ -22,6 +22,7 @@ export class UsuarioService {
   private urlConsultarMunicipios = `${environment.url}/usuario/municipios`;
   private urlConsultarUsuarios = `${environment.url}/usuario`;
   private urlConsultarProveedores = `${environment.url}/usuario/lista-proveedores`;
+  private urlConsultarUsuarioInicioSesion = `${environment.url}/usuario/iniciar-sesion`;
 
   constructor(
     protected http: HttpClient
@@ -57,5 +58,9 @@ export class UsuarioService {
 
   public crearRegistro(body: Usuarios): Observable<Usuario> {
     return this.http.post<Usuario>(`${this.urlConsultarUsuarios}`, body);
+  }
+
+  public iniciarSesion(correoElectronico: string, contrasenia: string): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.urlConsultarUsuarioInicioSesion}?correo=${correoElectronico}&contrasenia=${contrasenia}`);
   }
 }
