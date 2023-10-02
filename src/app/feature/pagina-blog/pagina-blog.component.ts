@@ -52,7 +52,7 @@ export class PaginaBlogComponent implements OnInit {
         idUsuario: this.publicacion.value.usuario,
         descripcion: this.publicacion.value.descripcion,
         fecha: this.publicacion.value.fechaPublicacion
-      }
+      };
       this.productoService.crearPublicacion(body).subscribe(response => {
         alert('Se creo la publicación');
         location.reload();

@@ -14,8 +14,8 @@ export class PrincipalComponent extends InicioSesionComponent implements OnInit 
   public isRegistro = false;
   constructor(
     public router: Router,
-    public usuarioService: UsuarioService) { 
-    super(router, usuarioService)
+    public usuarioService: UsuarioService) {
+    super(router, usuarioService);
   }
 
   ngOnInit(): void {

@@ -30,14 +30,7 @@ export class InicioSesionComponent implements OnInit {
       this.usuarioService.iniciarSesion(this.inicioSesion.value.correoElectronico, this.inicioSesion.value.contrasenia)
         .subscribe(response => {
           if (response.mensajes[0] === 'Consulta exitosa') {
-            const datosUsuario = response.data;
-            let datos = {
-              'correo': datosUsuario['correo'],
-              'idUsuario': datosUsuario['idUsuario']
-            }
-            localStorage.setItem('isLogin', 'true');
-            localStorage.setItem('usuario', JSON.stringify(datos));
-            this.router.navigate(['/inicio-cuidado-animal']);
+            this.guardarDatosStorage(response.data);
           } else {
             alert(response.mensajes[0]);
           }
@@ -45,6 +38,16 @@ export class InicioSesionComponent implements OnInit {
     } else {
       alert('Complete todos los datos');
     }
+  }
+
+  public guardarDatosStorage(datosUsuario): void {
+    const datos = {
+      correo: datosUsuario.correo,
+      idUsuario: datosUsuario.idUsuario
+    };
+    localStorage.setItem('isLogin', 'true');
+    localStorage.setItem('usuario', JSON.stringify(datos));
+    this.router.navigate(['/inicio-cuidado-animal']);
   }
 
   isLogin(): boolean {

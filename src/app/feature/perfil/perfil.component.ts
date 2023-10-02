@@ -51,11 +51,12 @@ export class PerfilComponent implements OnInit {
     this.datosPerfil = new FormGroup({
       razonSocial: new FormControl({ value: usuario.nombreRazonSocial, disabled: true }, Validators.required),
       tipoDocumento: new FormControl({ value: usuario.tipoIdentificacion.nombre, disabled: true }, Validators.required),
-      numeroDocumento: new FormControl({ value: usuario.numeroIdentificacion, disabled: true }, [Validators.pattern(/^\d+$/), Validators.required]),
+      numeroDocumento: new FormControl({ value: usuario.numeroIdentificacion, disabled: true },
+        [Validators.pattern(/^\d+$/), Validators.required]),
       correoElectronico: new FormControl({ value: usuario.correo, disabled: true }),
       rol: new FormControl({ value: usuario.rol.nombre, disabled: true }, Validators.required),
       numeroContacto: new FormControl({ value: usuario.celular, disabled: true }, [Validators.pattern(/^\d+$/), Validators.required]),
-      //ciudad: new FormControl({ value: 'Armenia', disabled: true }, Validators.required),
+      // ciudad: new FormControl({ value: 'Armenia', disabled: true }, Validators.required),
       direccion: new FormControl({ value: usuario.direccion.descripcion, disabled: true }, Validators.required)
     });
   }
@@ -64,8 +65,8 @@ export class PerfilComponent implements OnInit {
     this.datosPerfil.get('razonSocial').enable();
     this.datosPerfil.get('rol').enable();
     this.datosPerfil.get('numeroContacto').enable();
-    //this.datosPerfil.get('departamento').enable();
-    //this.datosPerfil.get('ciudad').enable();
+    // this.datosPerfil.get('departamento').enable();
+    // this.datosPerfil.get('ciudad').enable();
     this.datosPerfil.get('direccion').enable();
     this.editarCampos = true;
   }
@@ -74,8 +75,8 @@ export class PerfilComponent implements OnInit {
     this.datosPerfil.get('razonSocial').disable();
     this.datosPerfil.get('rol').disable();
     this.datosPerfil.get('numeroContacto').disable();
-    //this.datosPerfil.get('departamento').disable();
-    //.datosPerfil.get('ciudad').disable();
+    // this.datosPerfil.get('departamento').disable();
+    // this.datosPerfil.get('ciudad').disable();
     this.datosPerfil.get('direccion').disable();
     this.editarCampos = false;
   }
