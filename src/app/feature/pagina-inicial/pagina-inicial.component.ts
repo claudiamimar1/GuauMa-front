@@ -31,11 +31,12 @@ export class PaginaInicialComponent implements OnInit {
           };
           this.datosNegocios.push(negocio);
         });
-
       } else {
         alert('No se encontraron datos de negocios');
       }
-    });
+    }, (error => {
+      console.log(error);
+    }));
   }
 
 }

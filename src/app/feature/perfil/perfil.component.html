@@ -5,8 +5,7 @@
     <label for="rol">Rol</label><br>
     <select name="rol" id="rol" value="" formControlName="rol">
       <option value="">Seleccione una opción</option>
-      <option value="consumidor">Consumidor</option>
-      <option value="proveedor">Proveedor</option>
+      <option [value]="rol.nombre" *ngFor="let rol of roles">{{rol.nombre}}</option>
     </select><br><br>
 
     <label for="razonSocial">Nombre Completo</label><br>
@@ -15,10 +14,7 @@
     <label for="tipoDocumento">Tipo de Documento</label><br>
     <select name="tipoDocumento" id="tipoDocumento" value="" formControlName="tipoDocumento">
       <option value="">Seleccione una opción</option>
-      <option value="C">Cedula</option>
-      <option value="E">Cedula Extranjeria</option>
-      <option value="A">Nit</option>
-      <option value="P">Pasaporte</option>
+      <option [value]="id.nombre" *ngFor="let id of tipoIdentificaciones">{{id.descripcion}}</option>
     </select><br><br>
 
     <label for="numeroDocumento">Número Documento</label><br>
@@ -28,12 +24,9 @@
     <label for="numeroContacto">Número de Contacto</label><br>
     <input type="number" id="numeroContacto" name="numeroContacto" value="" formControlName="numeroContacto"
     ><br><br>
-
-    <label for="departamento">Departamento</label><br>
-    <input type="text" id="departamento" name="departamento" value="" formControlName="departamento"><br><br>
-
+<!-- 
     <label for="ciudad">Ciudad</label><br>
-    <input type="text" id="ciudad" name="ciudad" value="" formControlName="ciudad"><br><br>
+    <input type="text" id="ciudad" name="ciudad" value="" formControlName="ciudad"><br><br> -->
 
     <label for="direccion">Dirección</label><br>
     <textarea id="direccion" name="direccion" value="" formControlName="direccion"></textarea><br><br>
