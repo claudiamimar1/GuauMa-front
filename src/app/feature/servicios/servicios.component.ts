@@ -6,7 +6,7 @@ import { Producto } from 'src/app/shared/model/producto';
 import { ProductoService } from 'src/app/shared/service/producto.service';
 import { UsuarioService } from 'src/app/shared/service/usuario.service';
 import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component';
-import * as CryptoJS from 'crypto-js'
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-servicios',
@@ -35,11 +35,11 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
     public router: Router,
     public usuarioService: UsuarioService
   ) {
-    super(auth, router, usuarioService);
+    super(router, usuarioService);
   }
   ngOnInit(): void {
     this.auth.isAuthenticated$.subscribe(isAuthenticated => {
-      this.consultarUsuario(isAuthenticated, '/mis-servicios');
+      // this.consultarUsuario(isAuthenticated, '/mis-servicios');
     });
     this.cargarDatosGenerales();
     this.cargarProductos();
@@ -50,8 +50,8 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
       categoria: new FormControl('', Validators.required)
     });
   }
-  
-  private cargarDatosGenerales() {
+
+  private cargarDatosGenerales(): void {
     this.productoService.consultarCategoria().subscribe(response => {
       this.categorias = response.data;
       this.categorias.sort((a, b) => a.nombre > b.nombre ? 1 : -1);
@@ -68,15 +68,15 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
   }
 
   private cargarProductos(): void {
-    
-    let tipoDocumentoDe = CryptoJS.AES.decrypt(localStorage.getItem('param1'), 'admin');
-    let numeroIdentificacionDe = CryptoJS.AES.decrypt(localStorage.getItem('param2'), 'admin');
+
+    const tipoDocumentoDe = CryptoJS.AES.decrypt(localStorage.getItem('param1'), 'admin');
+    const numeroIdentificacionDe = CryptoJS.AES.decrypt(localStorage.getItem('param2'), 'admin');
 
     localStorage.setItem('param3', tipoDocumentoDe);
     localStorage.setItem('param4', numeroIdentificacionDe);
 
     this.tipoIdentificacion = this.hexToBase64(localStorage.getItem('param3'));
-    this.numeroIdentificacion = this.hexToBase64(localStorage.getItem('param4'))
+    this.numeroIdentificacion = this.hexToBase64(localStorage.getItem('param4'));
 
     this.productoService.consultarProductosUsuario(this.tipoIdentificacion, this.numeroIdentificacion).subscribe(
       res => {
@@ -94,7 +94,7 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
             };
             this.datosServicios.push(prod);
           });
-          
+
         }
       }, (error => {
         localStorage.setItem('param3', '');
@@ -132,9 +132,9 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
     }
   }
 
-  public hexToBase64(str) {
-    var bString = "";
-    for (var i = 0; i < str.length; i += 2) {
+  public hexToBase64(str): string {
+    let bString = '';
+    for (let i = 0; i < str.length; i += 2) {
       bString += String.fromCharCode(parseInt(str.substr(i, 2), 16));
     }
     return bString;

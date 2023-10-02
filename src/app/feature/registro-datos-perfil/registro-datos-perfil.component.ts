@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/shared/service/usuario.service';
-import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component';
 import { Usuarios } from 'src/app/shared/model/usuarios';
 
 @Component({
@@ -110,12 +109,12 @@ export class RegistroDatosPerfilComponent implements OnInit {
             codigoMunicipio: this.datosUsuario.value.ciudad
           },
           rol: this.datosUsuario.value.rol
-        }
+        };
         this.usuarioService.crearRegistro(body).subscribe(response => {
           alert('Se creo el usuario correctamente');
           this.regresar();
-        }, (error => {
-
+        }, (res => {
+          console.log(res);
         }));
       }));
     } else {
@@ -123,7 +122,7 @@ export class RegistroDatosPerfilComponent implements OnInit {
     }
   }
 
-  public regresar() {
+  public regresar(): void {
     location.reload();
   }
 }

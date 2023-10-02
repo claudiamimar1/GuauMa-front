@@ -5,6 +5,8 @@ import { Categoria } from 'src/app/shared/model/categoria';
 import { Producto } from 'src/app/shared/model/producto';
 import { Productos } from 'src/app/shared/model/productos';
 import { Resenia } from 'src/app/shared/model/resenia';
+import { Publicaciones } from 'src/app/shared/model/publicaciones';
+import { Publicacion } from 'src/app/shared/model/publicacion';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,6 +17,7 @@ export class ProductoService {
   private urlConsultarCategoria = `${environment.url}/producto/categorias`;
   private urlGuardarProducto = `${environment.url}/producto`;
   private urlGuardarResenia = `${environment.url}/producto/resenia`;
+  private urlConsultarPublicacion = `${environment.url}/producto/publicacion`;
 
   constructor(
     protected http: HttpClient
@@ -42,5 +45,13 @@ export class ProductoService {
 
   public crearResenia(body: Resenia): Observable<Producto> {
     return this.http.post<Producto>(`${this.urlGuardarResenia}`, body);
+  }
+
+  public consultarPublicacion(): Observable<Publicaciones> {
+    return this.http.get<Publicaciones>(`${this.urlConsultarPublicacion}`);
+  }
+
+  public crearPublicacion(body: Publicacion): Observable<Publicaciones> {
+    return this.http.post<Publicaciones>(`${this.urlConsultarPublicacion}`, body);
   }
 }

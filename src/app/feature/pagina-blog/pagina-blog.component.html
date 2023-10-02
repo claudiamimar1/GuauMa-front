@@ -12,7 +12,7 @@
 <div class="div-principal-blog">
   <div class="card text-center div-blog" *ngFor="let blog of datosBlog">
     <div class="card-header">
-      {{blog.categoria}}
+      <b>Usuario: </b>{{blog.usuario.nombreRazonSocial}}
     </div>
     <img src="{{blog.imagen}}" class="card-img-top">
     <div class="card-body">
@@ -20,7 +20,7 @@
       <p class="card-text">{{blog.descripcion}}</p>
     </div>
     <div class="card-footer text-muted">
-      {{blog.fechaPublicacion}}
+      {{blog.fecha | date:'dd MMMM yyyy'}}
     </div>
   </div>
   <a href="#" class="btn btn-primary">Ver más</a>

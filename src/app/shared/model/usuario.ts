@@ -14,8 +14,8 @@ export class Usuario {
             correo: string;
             celular: string;
             direccion: {
-                idDireccion: number,
-                descripcion: string,
+                idDireccion: number;
+                descripcion: string;
                 codigoMunicipio: number
             };
             rol: {

@@ -6,8 +6,8 @@ export class Usuarios {
     contrasenia: string;
     celular: string;
     direccion: {
-        descripcion: string,
-        codigoMunicipio: number
+        descripcion: string;
+        codigoMunicipio: number;
     };
-    rol: string
+    rol: string;
 }

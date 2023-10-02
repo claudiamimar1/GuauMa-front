@@ -20,12 +20,12 @@ export class PerfilComponent extends InicioSesionComponent implements OnInit {
     public router: Router,
     public usuarioService: UsuarioService
   ) {
-    super(auth, router, usuarioService);
+    super(router, usuarioService);
   }
 
   ngOnInit(): void {
     this.auth.isAuthenticated$.subscribe(isAuthenticated => {
-      this.consultarUsuario(isAuthenticated, '/mi-perfil');
+      // this.consultarUsuario(isAuthenticated, '/mi-perfil');
     });
     this.cargarDatos();
   }

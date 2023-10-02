@@ -20,14 +20,14 @@ export class ProductosGeneralesComponent extends PopUpComponent implements OnIni
     public productoService: ProductoService,
     public dialogRef: MatDialog
   ) {
-    super(dialogRef, productoService)
+    super(dialogRef, productoService);
    }
 
   ngOnInit(): void {
     this.cargarProductos();
   }
 
-  public cargarProductos() {
+  public cargarProductos(): void {
     this.productoService.consultarProductos().subscribe(response => {
       this.productos = response.data;
     });

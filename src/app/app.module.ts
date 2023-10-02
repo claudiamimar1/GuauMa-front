@@ -17,12 +17,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductosGeneralesComponent } from './feature/productos-generales/productos-generales.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
-import { PopUpComponent } from './core/components/pop-up/pop-up.component'
+import { PopUpComponent } from './core/components/pop-up/pop-up.component';
 import {MatButtonModule} from '@angular/material/button';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { PrincipalComponent } from './feature/principal/principal.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { PrincipalComponent } from './feature/principal/principal.component';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

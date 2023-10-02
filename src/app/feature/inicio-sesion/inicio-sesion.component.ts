@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/shared/model/usuario';
 import { UsuarioService } from 'src/app/shared/service/usuario.service';
 
 @Component({
@@ -13,7 +12,6 @@ export class InicioSesionComponent implements OnInit {
 
   public inicioSesion: FormGroup;
   public inicioCorrecto = false;
-  public datosUsuario;
 
   constructor(
     public router: Router,
@@ -27,23 +25,33 @@ export class InicioSesionComponent implements OnInit {
     });
   }
 
-  public iniciarSesion() {
-    if(this.inicioSesion.valid) {
-      this.usuarioService.iniciarSesion(this.inicioSesion.value.correoElectronico, this.inicioSesion.value.contrasenia).subscribe(response => {
-        if(response.mensajes[0] === 'Consulta exitosa') {
-          this.datosUsuario = response.data;
-          localStorage.setItem('isLogin', 'true');
-          this.router.navigate(['/inicio-cuidado-animal']);
-        } else {
-          alert(response.mensajes[0]);
-        }
-      });
+  public iniciarSesion(): void {
+    if (this.inicioSesion.valid) {
+      this.usuarioService.iniciarSesion(this.inicioSesion.value.correoElectronico, this.inicioSesion.value.contrasenia)
+        .subscribe(response => {
+          if (response.mensajes[0] === 'Consulta exitosa') {
+            const datosUsuario = response.data;
+            let datos = {
+              'correo': datosUsuario['correo'],
+              'idUsuario': datosUsuario['idUsuario']
+            }
+            localStorage.setItem('isLogin', 'true');
+            localStorage.setItem('usuario', JSON.stringify(datos));
+            this.router.navigate(['/inicio-cuidado-animal']);
+          } else {
+            alert(response.mensajes[0]);
+          }
+        });
     } else {
       alert('Complete todos los datos');
     }
   }
-  
-  public regresar() {
+
+  isLogin(): boolean {
+    return localStorage.getItem('isLogin') === 'true' ? true : false;
+  }
+
+  public regresar(): void {
     location.reload();
   }
 }

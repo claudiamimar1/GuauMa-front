@@ -37,14 +37,14 @@ export class PopUpComponent implements OnInit {
   }
 
   guardarResenia(): void {
-    let body: Resenia = {
+    const body: Resenia = {
       puntaje: this.resenia.controls.puntaje.value,
       comentario: this.resenia.controls.comentario.value,
       idProducto: this.idProd
-    }
+    };
     this.productoService.crearResenia(body).subscribe(response => {
-      alert('Se ha creado la reseña')
-    })
+      alert('Se ha creado la reseña');
+    });
   }
 
   closeDialog(): void {

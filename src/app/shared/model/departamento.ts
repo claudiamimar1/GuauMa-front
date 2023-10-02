@@ -3,9 +3,9 @@ export class Departamento {
     mensajes: Array<string>;
     data: [
         {
-            idDepartamento: number,
-            codigo: number,
-            nombre: string,
+            idDepartamento: number;
+            codigo: number;
+            nombre: string;
             pais: {
                 idPais: number;
                 nombre: string;

@@ -1,7 +1,5 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
-import { PrincipalComponent } from 'src/app/feature/principal/principal.component';
 import { ProductoService } from 'src/app/shared/service/producto.service';
 
 @Component({
@@ -9,7 +7,7 @@ import { ProductoService } from 'src/app/shared/service/producto.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent extends PrincipalComponent implements OnInit {
+export class HeaderComponent implements OnInit {
 
   public menuActive = false;
   public categoriaActive = false;
@@ -18,9 +16,7 @@ export class HeaderComponent extends PrincipalComponent implements OnInit {
   constructor(
     public router: Router,
     public productoService: ProductoService
-  ) { 
-    super();
-  }
+  ) { }
 
   ngOnInit(): void {
     this.cargarCategorias();
@@ -36,8 +32,11 @@ export class HeaderComponent extends PrincipalComponent implements OnInit {
 
   logOut(): void {
     localStorage.setItem('isLogin', 'false');
-    this.isLogin();
     this.router.navigate(['/']);
+  }
+
+  isLogin(): boolean {
+    return localStorage.getItem('isLogin') === 'true' ? true : false;
   }
 
   cargarCategorias(): void {

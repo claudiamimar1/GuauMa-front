@@ -1,35 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component';
-import { AuthService } from '@auth0/auth0-angular';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsuarioService } from 'src/app/shared/service/usuario.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PrincipalComponent } from '../principal/principal.component';
+import { ProductoService } from 'src/app/shared/service/producto.service';
+import { Publicacion } from 'src/app/shared/model/publicacion';
 
 @Component({
   selector: 'app-pagina-blog',
   templateUrl: './pagina-blog.component.html',
   styleUrls: ['./pagina-blog.component.css']
 })
-export class PaginaBlogComponent extends PrincipalComponent implements OnInit {
+export class PaginaBlogComponent implements OnInit {
+
+  @Input() datosUsuario;
 
   public datosBlog = [];
   public publicacion: FormGroup;
 
   constructor(
     public router: Router,
-    public usuarioService: UsuarioService
-  ) {
-    super();
-  }
+    public productoService: ProductoService
+  ) { }
 
   ngOnInit(): void {
-    if (this.isLogin()) {
+    const fechaActual = new Date();
+    if (localStorage.getItem('isLogin') === 'true') {
+      const idUsuario = JSON.parse(localStorage.getItem('usuario')).idUsuario;
       this.publicacion = new FormGroup({
         titulo: new FormControl('', Validators.required),
-        fechaPublicacion: new FormControl(new Date, Validators.required),
+        fechaPublicacion: new FormControl(fechaActual.getTime(), Validators.required),
         descripcion: new FormControl('', Validators.required),
-        usuario: new FormControl('', Validators.required)
+        usuario: new FormControl(idUsuario, Validators.required)
       });
       this.cargarDatos();
     } else {
@@ -38,39 +38,27 @@ export class PaginaBlogComponent extends PrincipalComponent implements OnInit {
   }
 
   private cargarDatos(): void {
-    this.datosBlog = [
-      {
-        id: 1,
-        titulo: 'Perros en adopción',
-        descripcion: 'En adopcion perros criollos',
-        fechaPublicacion: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
-        estado: 'Activo',
-        categoria: 'Adopción',
-        imagen: './../../../assets/images/logo.png'
-      }, {
-        id: 2,
-        titulo: 'Denuncia maltrato',
-        descripcion: 'En la veterinaria X se presenta casos de maltrato a las mascotas',
-        fechaPublicacion: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
-        estado: 'Activo',
-        categoria: 'Denuncias',
-        imagen: './../../../assets/images/logo.png'
-      }, {
-        id: 3,
-        titulo: 'Promoción Spa',
-        descripcion: 'Solo por el mes de Agosto, cualquiera de nuestros spa tendra el 10% de descuento',
-        fechaPublicacion: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
-        estado: 'Activo',
-        categoria: 'Promociones',
-        imagen: './../../../assets/images/logo.png'
-      }
-    ];
+    this.productoService.consultarPublicacion().subscribe(response => {
+      this.datosBlog = response.data;
+    }, (error => {
+      console.log(error);
+    }));
   }
 
-  public guardarPublicacion() {
-    debugger;
+  public guardarPublicacion(): void {
     if (this.publicacion.valid) {
-
+      const body: Publicacion = {
+        titulo: this.publicacion.value.titulo,
+        idUsuario: this.publicacion.value.usuario,
+        descripcion: this.publicacion.value.descripcion,
+        fecha: this.publicacion.value.fechaPublicacion
+      }
+      this.productoService.crearPublicacion(body).subscribe(response => {
+        alert('Se creo la publicación');
+        location.reload();
+      }, (error => {
+        console.log(error);
+      }));
     }
   }
 
