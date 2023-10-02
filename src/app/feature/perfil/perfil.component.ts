@@ -1,15 +1,14 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/shared/service/usuario.service';
-import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component';
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
-export class PerfilComponent extends InicioSesionComponent implements OnInit {
+export class PerfilComponent implements OnInit {
 
   public datosPerfil: FormGroup;
   public editarCampos = false;
@@ -19,9 +18,7 @@ export class PerfilComponent extends InicioSesionComponent implements OnInit {
   constructor(
     public router: Router,
     public usuarioService: UsuarioService
-  ) {
-    super(router, usuarioService);
-  }
+  ) { }
 
   ngOnInit(): void {
     if (localStorage.getItem('isLogin') === 'true') {
@@ -38,20 +35,19 @@ export class PerfilComponent extends InicioSesionComponent implements OnInit {
 
   private cargarDatos(usuario): void {
     this.usuarioService.consultarRol().subscribe(response => {
-    this.roles = response.data;
-    this.roles.sort((a, b) => a.nombre > b.nombre ? 1 : -1);
-  }, (error => {
-    console.log(error);
-  }));
+      this.roles = response.data;
+      this.roles.sort((a, b) => a.nombre > b.nombre ? 1 : -1);
+    }, (error => {
+      console.log(error);
+    }));
 
-  this.usuarioService.consultarTipoIdentificacion().subscribe(response => {
-    this.tipoIdentificaciones = response.data;
-    this.tipoIdentificaciones.sort((a, b) => a.descripcion > b.descripcion ? 1 : -1);
-  }, (error => {
-    console.log(error);
-  }));
+    this.usuarioService.consultarTipoIdentificacion().subscribe(response => {
+      this.tipoIdentificaciones = response.data;
+      this.tipoIdentificaciones.sort((a, b) => a.descripcion > b.descripcion ? 1 : -1);
+    }, (error => {
+      console.log(error);
+    }));
 
-    debugger;
     this.datosPerfil = new FormGroup({
       razonSocial: new FormControl({ value: usuario.nombreRazonSocial, disabled: true }, Validators.required),
       tipoDocumento: new FormControl({ value: usuario.tipoIdentificacion.nombre, disabled: true }, Validators.required),
