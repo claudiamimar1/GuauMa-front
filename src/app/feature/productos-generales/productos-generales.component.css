@@ -42,6 +42,11 @@ body {
     cursor: pointer;
 }
 
+input, select, textarea {
+    border-radius: 10px;
+    cursor: text;
+}
+
 @media screen and (max-width: 600px) {
     .column {
         width: 100%;

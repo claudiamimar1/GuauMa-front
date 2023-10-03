@@ -13,9 +13,10 @@ import { ProductoService } from 'src/app/shared/service/producto.service';
 export class ProductosGeneralesComponent extends PopUpComponent implements OnInit {
 
   public productos = [];
+  public productosFiltrados = [];
+  public categorias = [];
 
   constructor(
-    public auth: AuthService,
     public router: Router,
     public productoService: ProductoService,
     public dialogRef: MatDialog
@@ -24,13 +25,28 @@ export class ProductosGeneralesComponent extends PopUpComponent implements OnIni
    }
 
   ngOnInit(): void {
-    this.cargarProductos();
+    if (localStorage.getItem('isLogin') === 'true') {
+      this.cargarProductos();
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 
   public cargarProductos(): void {
     this.productoService.consultarProductos().subscribe(response => {
       this.productos = response.data;
+      this.productosFiltrados = response.data
     });
+    this.productoService.consultarCategoria().subscribe(response => {
+      this.categorias = response.data;
+      this.categorias.sort((a, b) => a.nombre > b.nombre ? 1 : -1);
+    }, (error => {
+      console.log(error);
+    }));
+  }
+
+  public filtrarPorCategoria(categoria): void {
+    this.productosFiltrados = this.productos.filter(producto => producto.categoria.nombre === categoria.target.value);
   }
 
 }

@@ -9,8 +9,6 @@
             <a class="dropdown-item" *ngIf="isLogin()" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mi Perfil</a>
             <a class="dropdown-item" *ngIf="isLogin()" [routerLink]="['mis-servicios']" (click)="mostrarMenu()">Mis
                 servicios</a>
-            <a class="dropdown-item" *ngIf="isLogin()" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mis
-                Publicaciones</a>
             <a class="dropdown-item" *ngIf="isLogin()" (click)="logOut()">Cerrar Sesión</a>
         </div>
     </div>
