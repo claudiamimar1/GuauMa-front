@@ -43,7 +43,9 @@ export class InicioSesionComponent implements OnInit {
   public guardarDatosStorage(datosUsuario): void {
     const datos = {
       correo: datosUsuario.correo,
-      idUsuario: datosUsuario.idUsuario
+      idUsuario: datosUsuario.idUsuario,
+      numeroIdentificacion: datosUsuario.numeroIdentificacion,
+      tipoIdentificacion: datosUsuario.tipoIdentificacion.nombre
     };
     localStorage.setItem('isLogin', 'true');
     localStorage.setItem('usuario', JSON.stringify(datos));

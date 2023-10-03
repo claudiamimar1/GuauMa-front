@@ -1,19 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
 import { Producto } from 'src/app/shared/model/producto';
 import { ProductoService } from 'src/app/shared/service/producto.service';
 import { UsuarioService } from 'src/app/shared/service/usuario.service';
-import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component';
-import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-servicios',
   templateUrl: './servicios.component.html',
   styleUrls: ['./servicios.component.css']
 })
-export class ServiciosComponent extends InicioSesionComponent implements OnInit {
+export class ServiciosComponent implements OnInit {
 
   public datosServicios = [];
   public noEditar = true;
@@ -31,24 +28,22 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
 
   constructor(
     public productoService: ProductoService,
-    public auth: AuthService,
     public router: Router,
     public usuarioService: UsuarioService
-  ) {
-    super(router, usuarioService);
-  }
+  ) { }
   ngOnInit(): void {
-    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
-      // this.consultarUsuario(isAuthenticated, '/mis-servicios');
-    });
-    this.cargarDatosGenerales();
-    this.cargarProductos();
-    this.nuevoServicio = new FormGroup({
-      nombre: new FormControl('', Validators.required),
-      descripcion: new FormControl('', Validators.required),
-      precio: new FormControl('', [Validators.pattern(/^\d+$/), Validators.required]),
-      categoria: new FormControl('', Validators.required)
-    });
+    if (localStorage.getItem('isLogin') === 'true') {
+      this.cargarDatosGenerales();
+      this.cargarProductos();
+      this.nuevoServicio = new FormGroup({
+        nombre: new FormControl('', Validators.required),
+        descripcion: new FormControl('', Validators.required),
+        precio: new FormControl('', [Validators.pattern(/^\d+$/), Validators.required]),
+        categoria: new FormControl('', Validators.required)
+      });
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 
   private cargarDatosGenerales(): void {
@@ -62,26 +57,16 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
     this.usuarioService.consultarTipoIdentificacion().subscribe(response => {
       this.listaIdentificaciones = response.data;
       this.listaIdentificaciones.sort((a, b) => a.descripcion > b.descripcion ? 1 : -1);
-      }, (error => {
-        console.log(error);
-      }));
+    }, (error => {
+      console.log(error);
+    }));
   }
 
   private cargarProductos(): void {
-
-    const tipoDocumentoDe = CryptoJS.AES.decrypt(localStorage.getItem('param1'), 'admin');
-    const numeroIdentificacionDe = CryptoJS.AES.decrypt(localStorage.getItem('param2'), 'admin');
-
-    localStorage.setItem('param3', tipoDocumentoDe);
-    localStorage.setItem('param4', numeroIdentificacionDe);
-
-    this.tipoIdentificacion = this.hexToBase64(localStorage.getItem('param3'));
-    this.numeroIdentificacion = this.hexToBase64(localStorage.getItem('param4'));
-
+    this.tipoIdentificacion = JSON.parse(localStorage.getItem('usuario')).tipoIdentificacion;
+    this.numeroIdentificacion = JSON.parse(localStorage.getItem('usuario')).numeroIdentificacion;
     this.productoService.consultarProductosUsuario(this.tipoIdentificacion, this.numeroIdentificacion).subscribe(
       res => {
-        localStorage.setItem('param3', '');
-        localStorage.setItem('param4', '');
         const usuario = res.data;
         if (usuario.length > 0) {
           usuario.forEach(us => {
@@ -94,11 +79,9 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
             };
             this.datosServicios.push(prod);
           });
-
         }
       }, (error => {
-        localStorage.setItem('param3', '');
-        localStorage.setItem('param4', '');
+        console.log(error);
       }));
   }
 
@@ -131,13 +114,4 @@ export class ServiciosComponent extends InicioSesionComponent implements OnInit 
       alert('Ingrese todos los datos');
     }
   }
-
-  public hexToBase64(str): string {
-    let bString = '';
-    for (let i = 0; i < str.length; i += 2) {
-      bString += String.fromCharCode(parseInt(str.substr(i, 2), 16));
-    }
-    return bString;
-  }
-
 }
