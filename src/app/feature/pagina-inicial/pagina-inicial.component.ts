@@ -27,7 +27,7 @@ export class PaginaInicialComponent implements OnInit {
           const negocio = {
             id: res.idUsuario,
             nombre: res.nombreRazonSocial,
-            imagen: './../../../assets/images/logo.png'
+            imagen: './../../../assets/images/perfil.png'
           };
           this.datosNegocios.push(negocio);
         });

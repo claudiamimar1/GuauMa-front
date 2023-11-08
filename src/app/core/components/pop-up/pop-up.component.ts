@@ -15,6 +15,8 @@ export class PopUpComponent implements OnInit {
   public resenia: FormGroup;
   public idProd: number;
   public verResenia: string;
+  public puntaje: number;
+  public comentarios: Array<String>;
 
   constructor(
     public dialogRef: MatDialog,
@@ -24,6 +26,7 @@ export class PopUpComponent implements OnInit {
   ngOnInit(): void {
     this.idProd = Number(localStorage.getItem('idProducto'));
     this.verResenia = localStorage.getItem('verResenia');
+    this.consultarResenia(this.idProd);
     this.resenia = new FormGroup({
       puntaje: new FormControl('', Validators.required),
       comentario: new FormControl('', Validators.required)
@@ -36,6 +39,13 @@ export class PopUpComponent implements OnInit {
     localStorage.setItem('verResenia', String(resenia));
   }
 
+  consultarResenia(idProducto) {
+    this.productoService.consultarProductos().subscribe(response => {
+      this.puntaje = response.data.filter(e => e.idProducto === idProducto)[0].resenias;
+      this.comentarios = response.data.filter(e => e.idProducto === idProducto)[0].comentarios;
+    });
+  }
+
   guardarResenia(): void {
     const body: Resenia = {
       puntaje: this.resenia.controls.puntaje.value,
@@ -44,6 +54,7 @@ export class PopUpComponent implements OnInit {
     };
     this.productoService.crearResenia(body).subscribe(response => {
       alert('Se ha creado la reseña');
+      this.closeDialog();
     });
   }
 

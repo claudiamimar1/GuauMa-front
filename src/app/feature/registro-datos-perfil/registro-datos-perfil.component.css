@@ -32,7 +32,8 @@ input, select, textarea {
 
 .btn-agregar {
     margin-bottom: 10px;
-    background-color: #b1d1fb;
+    background-color: #57a3d2;
+    color: #fff;
 }
 
 .btn-regresar {
@@ -40,6 +41,7 @@ input, select, textarea {
     position: absolute;
     left: 0px;
     cursor: pointer;
-    background-color: #b1d1fb;
+    background-color: #57a3d2;
+    color: #fff;
 }
 

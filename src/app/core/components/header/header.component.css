@@ -1,14 +1,14 @@
 :host {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 14px;
-    color: #333;
+    color: #fff;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 .div-header {
-    background: #dfbce56b;
+    background: linear-gradient(#57a3d2, #fff);
 }
 
 .contenedor-header {
@@ -35,7 +35,7 @@ ul {
     margin: 0;
     padding: 0px;
     overflow: hidden;
-    background-color: #b1d1fb;
+    background-color: #57a3d2;
     display: flex;
     justify-content: center;
 }
@@ -45,7 +45,7 @@ ul {
     margin: 0;
     padding: 0px;
     overflow: hidden;
-    background-color: #b1d1fb;
+    background-color: #57a3d2;
     display: none;
 }
 
@@ -64,12 +64,12 @@ li a {
 }
 
 .active {
-    background-color: #d9befb;
+    background-color: #ef8e5f;
     color: rgb(0, 0, 0);
 }
 
 li a:hover {
-    background-color: #d9befb;
+    background-color: #ef8e5f;
     color: rgb(0, 0, 0);
 }
 
@@ -78,11 +78,11 @@ li a:hover {
     right: 0;
     position: absolute;
     margin: 12px;
-    background-color: #b1d1fb;
+    background-color: #ef8e5f;
 }
 
 .div-menu {
-    background: #afd2fb;
+    background: #ef8e5f;
     width: fit-content;
     border-radius: 12px;
     padding: 10px;
@@ -93,7 +93,7 @@ li a:hover {
 }
 
 .dropdown-item:hover, .dropdown-item:active, .dropdown-item:focus {
-    background: #d9befb;
+    background: #ef8e5f;
     border-radius: 15px;
 }
 

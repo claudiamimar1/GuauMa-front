@@ -39,6 +39,10 @@ export class HeaderComponent implements OnInit {
     return localStorage.getItem('isLogin') === 'true' ? true : false;
   }
 
+  isProveedor(): boolean {
+    return localStorage.getItem('rol') === 'Proveedor' ? true : false;
+  }
+
   cargarCategorias(): void {
     this.productoService.consultarCategoria().subscribe(response => {
       this.categorias = response.data;

@@ -46,7 +46,11 @@ export class ProductosGeneralesComponent extends PopUpComponent implements OnIni
   }
 
   public filtrarPorCategoria(categoria): void {
-    this.productosFiltrados = this.productos.filter(producto => producto.categoria.nombre === categoria.target.value);
+    if (categoria.target.value === 'todo' || categoria.target.value === '') {
+      this.productosFiltrados = this.productos;
+    } else {
+      this.productosFiltrados = this.productos.filter(producto => producto.categoria.nombre === categoria.target.value);
+    }
   }
 
 }

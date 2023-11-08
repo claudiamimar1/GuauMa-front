@@ -6,27 +6,19 @@
             <th>Descripción</th>
             <th>Precio</th>
             <th>Categoría</th>
-            <th>Acciones</th>
         </tr>
         <tr *ngFor="let servicio of datosServicios">
             <td>
-                <input type="text" id="nombre" [value]="servicio.nombre" [disabled] = "noEditar">
+                {{servicio.nombre}}
             </td>
             <td>
-                <textarea id="descripcion" [value]="servicio.descripcion" [disabled] = "noEditar"></textarea>
+                {{servicio.descripcion}}
             </td>
-            <td id="precio">
-                $<input type="number" id="precio" [value]="servicio.precio" [disabled] = "noEditar">
+            <td>
+                ${{servicio.precio}}
             </td>
             <td>
                 {{servicio.categoria}}
-                <select id="categoria" [value]="servicio.categoria" [disabled] = "noEditar">
-                    <option [value]="servicio.categoria">{{servicio.categoria}}</option>                    
-                </select>
-            </td>
-            <td>
-                <button class="btn btn-editar"><i class="fa fa-edit" id="editar-{{servicio.id}}"
-                        (click)="guardarNuevoServicio($event.target.id)"></i></button>
             </td>
         </tr>
         <tr *ngIf="agregarServicio">
@@ -40,10 +32,11 @@
                 $<input type="number" id="precio" formControlName="precio">
             </td>
             <td>
-                <select id="categoria" value="" formControlName="categoria">
-                    <option value="">Seleccione una opción</option>
-                    <option [value]="cat.nombre" *ngFor="let cat of categorias">{{cat.nombre}}</option>
-                </select>
+                    <select id="categoria" value="" formControlName="categoria">
+                        <option value="">Seleccione una opción</option>
+                        <option [value]="cat.nombre" *ngFor="let cat of categorias">{{cat.nombre}}</option>
+                    </select>
+                
             </td>
             <td>
                 <button class="btn btn-editar" (click)="guardarNuevoServicio()"><i class="fa fa-save"></i></button>

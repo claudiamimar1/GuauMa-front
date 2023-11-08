@@ -25,10 +25,12 @@ input, select, textarea {
     position: absolute;
     left: 0px;
     cursor: pointer;
-    background-color: #b1d1fb;
+    background-color: #57a3d2;
+    color: #fff !important;
 }
 
 .btn-inicio-sesion {
     margin: 12px;
-    background-color: #b1d1fb;
+    background-color: #57a3d2;
+    color: #fff !important;
 }

@@ -13,7 +13,6 @@ import { UsuarioService } from 'src/app/shared/service/usuario.service';
 export class ServiciosComponent implements OnInit {
 
   public datosServicios = [];
-  public noEditar = true;
   public agregarServicio = false;
   public nuevoServicio: FormGroup;
   public nombreEditar = '';

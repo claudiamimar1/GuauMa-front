@@ -40,7 +40,7 @@ body {
 }
 
 .card {
-    box-shadow: 0 4px 8px 0 rgb(217 190 251);
+    box-shadow: 0 4px 8px 0 rgb(239, 142, 95);
     padding: 16px;
     text-align: center;
     background-color: #afd1fb38;
@@ -53,8 +53,8 @@ body {
 
 .btn-primary {
     color: #000;
-    background-color: #d9befb;
-    border-color: #d9befb;
+    background-color: #ef8e5f;
+    border-color: #ef8e5f;
     margin-top: 20px;
     margin-bottom: 20px;
 }

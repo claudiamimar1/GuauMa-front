@@ -1,13 +1,12 @@
 <header>
     <div class="div-header">
         <div class="contenedor-header">
-            <img class="logo-aplicacion" src="./../../../../assets/images/logo.png" />
-            <h1 class="nombre-aplicacion">El Guardián de tu Mascota</h1>
+            <img class="logo-aplicacion" src="./../../../../assets/images/logo3.png" />
         </div>
         <button class="btn btn-menu" *ngIf="isLogin()" (click)="mostrarMenu()"><i class="fa fa-user"></i></button>
         <div class="div-menu" [ngClass]="{ 'div-menu-active': menuActive }">
             <a class="dropdown-item" *ngIf="isLogin()" [routerLink]="['mi-perfil']" (click)="mostrarMenu()">Mi Perfil</a>
-            <a class="dropdown-item" *ngIf="isLogin()" [routerLink]="['mis-servicios']" (click)="mostrarMenu()">Mis
+            <a class="dropdown-item" *ngIf="isLogin() && isProveedor()" [routerLink]="['mis-servicios']" (click)="mostrarMenu()">Mis
                 servicios</a>
             <a class="dropdown-item" *ngIf="isLogin()" (click)="logOut()">Cerrar Sesión</a>
         </div>

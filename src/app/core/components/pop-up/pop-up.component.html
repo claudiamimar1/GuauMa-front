@@ -1,24 +1,14 @@
 <div class="div-resenia" *ngIf="verResenia === 'true'" [formGroup]="resenia">
     <div class="div-comments">
-        <div class="container-resenia">
-            <p><b>Calificación</b> 2</p>
-            <p>Comentario 1</p>
-        </div>
-        <div class="container-resenia">
-            <p><b>Calificación</b> 3</p>
-            <p>Comentario 2</p>
-        </div>
-        <div class="container-resenia">
-            <p><b>Calificación</b> 4</p>
-            <p>Comentario 3</p>
+        <p><b>Calificación: </b>{{puntaje}}</p>
+        <div class="container-resenia" *ngFor="let comentario of comentarios">
+            <p>{{comentario}}</p>
         </div>
         <div class="div-button-close">
-            <button class="btn btn-ver-mas"><i class="fa fa-plus"></i></button>
             <button class="btn btn-cancelar" (click)="closeDialog()">X</button>
         </div>
     </div>
 </div>
-
 <div class="div-resenia" *ngIf="verResenia === 'false'" [formGroup]="resenia">
     <label for="puntaje">Puntaje</label>
     <select name="puntaje" id="puntaje" value="" formControlName="puntaje">

@@ -24,10 +24,8 @@ export class Productos {
                     descripcion: string;
                 };
             };
-            resenias: {
-                comentario: string;
-                puntaje: number;
-            }
+            resenias: number,
+            comentarios: Array<String>
         }
     ];
     codigoHttp: number;

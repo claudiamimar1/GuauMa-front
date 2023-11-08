@@ -49,6 +49,7 @@ export class InicioSesionComponent implements OnInit {
     };
     localStorage.setItem('isLogin', 'true');
     localStorage.setItem('usuario', JSON.stringify(datos));
+    localStorage.setItem('rol', datosUsuario.rol.nombre);
     this.router.navigate(['/inicio-cuidado-animal']);
   }
 

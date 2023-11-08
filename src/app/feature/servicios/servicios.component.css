@@ -25,18 +25,14 @@ table th {
 }
 
 table tr:nth-child(even) {
-    background-color: #f2e3f4;
-}
-
-table tr:hover {
-    background-color: #b1d1fb;
+    background-color: #eea37e;
 }
 
 table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #b1d1fb;
+    background-color: #57a3d2;
     color: #000;
     text-align: center;
 }
@@ -47,7 +43,7 @@ table td {
 
 .btn-agregar {
     margin-bottom: 10px;
-    background-color: #b1d1fb;
+    background-color: #57a3d2;
 }
 
 .image-upload > input

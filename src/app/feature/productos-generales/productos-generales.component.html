@@ -3,11 +3,12 @@
     <select name="categoria" id="categoria" value="" (change)="filtrarPorCategoria($event)">
       <option value="">Seleccione una opción</option>
       <option [value]="categoria.nombre" *ngFor="let categoria of categorias">{{categoria.nombre}}</option>
+      <option value="todo">Mostrar todas las categorias</option>
     </select><br><br>
     <div class="column" *ngFor="let producto of productosFiltrados">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">{{producto.nombre}}</h5>
+                <h5 class="card-title">{{producto.descripcion}}</h5>
                 <span><b>Precio:</b> ${{producto.precio}}</span><br>
                 <span><b>Proveedor:</b> {{producto.usuario.nombreRazonSocial}}</span><br>
                 <span><b>Contacto:</b> {{producto.usuario.celular}}</span><br>
