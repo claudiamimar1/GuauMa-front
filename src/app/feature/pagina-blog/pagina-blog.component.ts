@@ -40,6 +40,7 @@ export class PaginaBlogComponent implements OnInit {
   private cargarDatos(): void {
     this.productoService.consultarPublicacion().subscribe(response => {
       this.datosBlog = response.data;
+      this.datosBlog.sort((a, b) => b.fecha - a.fecha);
     }, (error => {
       console.log(error);
     }));

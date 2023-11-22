@@ -27,7 +27,8 @@ export class PaginaInicialComponent implements OnInit {
           const negocio = {
             id: res.idUsuario,
             nombre: res.nombreRazonSocial,
-            imagen: './../../../assets/images/perfil.png'
+            imagen: './../../../assets/images/perfil.png',
+            correo: res.correo
           };
           this.datosNegocios.push(negocio);
         });
@@ -37,6 +38,11 @@ export class PaginaInicialComponent implements OnInit {
     }, (error => {
       console.log(error);
     }));
+  }
+
+  verProveedor(idProveedor) {
+    let correoProveedor = this.datosNegocios.filter(e => e.id === idProveedor)[0].correo;
+    this.router.navigate([`/perfil-proveedor/${correoProveedor}`]);
   }
 
 }

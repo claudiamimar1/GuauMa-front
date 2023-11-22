@@ -24,6 +24,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { PrincipalComponent } from './feature/principal/principal.component';
 import { CommonModule } from '@angular/common';
+import { PerfilProveedorComponent } from './feature/perfil-proveedor/perfil-proveedor.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CommonModule } from '@angular/common';
     RegistroDatosPerfilComponent,
     ProductosGeneralesComponent,
     PopUpComponent,
-    PrincipalComponent
+    PrincipalComponent,
+    PerfilProveedorComponent
   ],
   imports: [
     BrowserModule,

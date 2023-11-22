@@ -6,6 +6,7 @@ import { PerfilComponent } from './feature/perfil/perfil.component';
 import { ServiciosComponent } from './feature/servicios/servicios.component';
 import { ProductosGeneralesComponent } from './feature/productos-generales/productos-generales.component';
 import { PrincipalComponent } from './feature/principal/principal.component';
+import { PerfilProveedorComponent } from './feature/perfil-proveedor/perfil-proveedor.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'blog-cuidado-animal', component: PaginaBlogComponent},
   { path: 'mi-perfil', component: PerfilComponent},
   { path: 'mis-servicios', component: ServiciosComponent},
-  { path: 'productos', component: ProductosGeneralesComponent}
+  { path: 'productos', component: ProductosGeneralesComponent},
+  { path: 'perfil-proveedor/:correo', component: PerfilProveedorComponent}
 ];
 
 @NgModule({
